@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Tuturias</title>
+    <title>Login Tutorias</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -44,8 +44,7 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        .login-container input[type="submit"],
-        .login-container input[type="button"] {
+        .login-container button {
             width: 100%;
             padding: 12px;
             background-color: #6a11cb;
@@ -57,8 +56,7 @@
             transition: background-color 0.3s;
             margin-bottom: 10px;
         }
-        .login-container input[type="submit"]:hover,
-        .login-container input[type="button"]:hover {
+        .login-container button:hover {
             background-color: #2575fc;
         }
 
@@ -73,8 +71,7 @@
     <label for="password">Clave</label>
     <input type="password" id="password" name="password" >
 
-    <input type="submit" value="Ingresar">
-    <input type="button" value="Registrar">
-</div>
+    <a href="menuFinal.jsp"><button type="button">Ingresar</button></a>
+    <a href="Registro.jsp"><button type="button">Registrar</button></a>
 </body>
 </html>

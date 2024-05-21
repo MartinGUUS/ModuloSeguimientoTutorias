@@ -124,19 +124,19 @@
 
             <br>
             <b>Rol:</b> <br>
-            <input type="checkbox" id="alumno" name="alumno" onclick="toggleActions()">
+            <input type="radio" id="alumno" name="rol" onclick="toggleActions()">
             <label for="alumno">Tutorado</label>
 
-            <input type="checkbox" id="tutor" name="tutor" onclick="toggleActions()">
+            <input type="radio" id="tutor" name="rol" onclick="toggleActions()">
             <label for="tutor">Tutor</label>
 
             <div id="alumno-actions" class="actions">
                 <label for="matricula">Matricula: </label>
                 <input type="text" id="matricula" name="matricula" > <br>
-                
+
                 <label for="carrera">Carrera: </label>
                 <input type="text" id="carrera" name="carrera" > <br>
-                
+
                 <label for="semestre">Semestre: </label>
                 <input type="number" id="semestre" name="semestre" > <br>
             </div>
@@ -150,7 +150,7 @@
 
             <input type="button" value="Registrar">
             </form>
-            
+
             <form action="index.jsp" method="post">
                 <input type="submit" value="Volver">
             </form>
