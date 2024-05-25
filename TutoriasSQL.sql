@@ -23,7 +23,9 @@ create table usuarios (
     numero varchar(10),
     correo text,
     direccion text,
-    clave text
+    clave text,
+    fkEstatus int,
+    Foreign Key (fkEstatus) REFERENCES estatus(idEstatus)
 );
 
 create table estatus (
@@ -33,7 +35,6 @@ create table estatus (
 );
 
 create table tutores (
-    matricula varchar(9) NOT NULL PRIMARY KEY,
     fkUsuarios int,
     fkEstatus int,
     Foreign Key (fkUsuarios) REFERENCES usuarios (idUsuarios),
