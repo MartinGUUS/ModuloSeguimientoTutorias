@@ -1,4 +1,3 @@
--- Active: 1715003786902@@127.0.0.1@5432@tutorias
 
 create table areas (
     idAreas serial PRIMARY KEY,
@@ -13,6 +12,13 @@ create table materias (
     Foreign Key (fkAreas) REFERENCES areas (idAreas)
 );
 
+
+
+create table estatus (
+    idEstatus serial PRIMARY KEY,
+    nombreEstatus TEXT,
+    descripcion text
+);
 create table usuarios (
     idUsuarios serial PRIMARY KEY,
     nombre text,
@@ -28,13 +34,9 @@ create table usuarios (
     Foreign Key (fkEstatus) REFERENCES estatus(idEstatus)
 );
 
-create table estatus (
-    idEstatus serial PRIMARY KEY,
-    nombreEstatus TEXT,
-    descripcion text
-);
 
 create table tutores (
+    idTutores serial PRIMARY KEY,
     fkUsuarios int,
     fkEstatus int,
     Foreign Key (fkUsuarios) REFERENCES usuarios (idUsuarios),
@@ -46,18 +48,18 @@ create table alumnos (
     carrera text,
     semestre int,
     fkUsuarios int,
-    fkTutores varchar(9),
+    fkTutores int,
     fkEstatus int,
     Foreign Key (fkUsuarios) REFERENCES usuarios (idUsuarios),
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus),
-    Foreign Key (fkTutores) REFERENCES tutores (matricula)
+    Foreign Key (fkTutores) REFERENCES tutores (idTutores)
 );
 
 create table notasAlumnos (
-    fkTutores varchar(9),
+    fkTutores int,
     fkAlumnos varchar(9),
     notas TEXT,
-    Foreign Key (fkTutores) REFERENCES tutores (matricula),
+    Foreign Key (fkTutores) REFERENCES tutores (idTutores),
     Foreign Key (fkAlumnos) REFERENCES alumnos (matricula)
 );
 
@@ -67,9 +69,9 @@ create table tutorias (
     contexto TEXT,
     duracion int,
     fkAlumnos varchar(9),
-    fkTutores varchar(9),
+    fkTutores int,
     fkEstatus int,
-    Foreign Key (fkTutores) REFERENCES tutores (matricula),
+    Foreign Key (fkTutores) REFERENCES tutores (idTutores),
     Foreign Key (fkAlumnos) REFERENCES alumnos (matricula),
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
