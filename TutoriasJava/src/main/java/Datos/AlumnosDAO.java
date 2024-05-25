@@ -10,7 +10,7 @@ public class AlumnosDAO {
 
     private static final String selectPrincipal = "SELECT * FROM alumnos";
 
-    public static List<Alumnos> listarRazas() {
+    public static List<Alumnos> listarAlumnos() {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

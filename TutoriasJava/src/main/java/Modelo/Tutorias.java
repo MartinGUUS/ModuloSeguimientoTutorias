@@ -12,10 +12,30 @@ public class Tutorias implements Serializable {
     private String fkAlumno;
     private String fkTutor;
     private int fkStatus;
+    private String nombreAlumno;
+    private String apellidoPaternoAlumno;
+    private String apellidoMaternoAlumno;
+    private String nombreTutor;
+    private String apellidoPaternoTutor;
+    private String apellidoMaternoTutor;
+
+
+    public Tutorias(int idTutorias, Date fecha, int duracion, String temasTratados, String nombreAlumno, String apellidoPaternoAlumno, String apellidoMaternoAlumno, String nombreTutor, String apellidoPaternoTutor, String apellidoMaternoTutor) {
+        this.idTutorias = idTutorias;
+        this.fecha = fecha;
+        this.duracion = duracion;
+        this.contexto = temasTratados;
+        this.nombreAlumno = nombreAlumno;
+        this.apellidoPaternoAlumno = apellidoPaternoAlumno;
+        this.apellidoMaternoAlumno = apellidoMaternoAlumno;
+        this.nombreTutor = nombreTutor;
+        this.apellidoPaternoTutor = apellidoPaternoTutor;
+        this.apellidoMaternoTutor = apellidoMaternoTutor;
+    }
 
     public Tutorias() {
     }
-    
+
     public Tutorias(int idTutorias, Date fecha, String contexto, int duracion, String fkAlumno, String fkTutor, int fkStatus) {
         this.idTutorias = idTutorias;
         this.fecha = fecha;
@@ -25,7 +45,7 @@ public class Tutorias implements Serializable {
         this.fkTutor = fkTutor;
         this.fkStatus = fkStatus;
     }
-    
+
     public Tutorias(Date fecha, String contexto, int duracion, String fkAlumno, String fkTutor, int fkStatus) {
         this.fecha = fecha;
         this.contexto = contexto;
@@ -34,6 +54,7 @@ public class Tutorias implements Serializable {
         this.fkTutor = fkTutor;
         this.fkStatus = fkStatus;
     }
+
 
     public int getIdTutorias() {
         return idTutorias;
