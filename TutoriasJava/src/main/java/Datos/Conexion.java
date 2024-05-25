@@ -31,12 +31,12 @@ public class Conexion {
         return ds;
     }
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         //  JOptionPane.showMessageDialog(null, "Hola Si funciona");
         return getDataSource().getConnection();
     }
 
-    public void close(ResultSet rs) {
+    public static void close(ResultSet rs) {
         try {
             rs.close();
         } catch (SQLException ex) {
@@ -44,7 +44,7 @@ public class Conexion {
         }
     }
 
-    public void close(PreparedStatement ps) {
+    public static void close(PreparedStatement ps) {
         try {
             ps.close();
         } catch (SQLException ex) {
@@ -52,7 +52,7 @@ public class Conexion {
         }
     }
 
-    public void close(Connection conn) {
+    public static void close(Connection conn) {
         try {
             conn.close();
         } catch (SQLException ex) {
