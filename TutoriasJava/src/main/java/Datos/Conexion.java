@@ -10,16 +10,16 @@ import java.sql.SQLException;
 
 
 public class Conexion {
-    private final String user = "postgres";
-    private final String pswd = "admin";
-    private final String bd = "tutorias";
-    private final String server = "jdbc:postgresql://localhost:5432/" + bd;
-    private final String driver = "org.postgresql.Driver";
+    private static final String user = "postgres";
+    private static final String pswd = "admin";
+    private static final String bd = "tutorias";
+    private static final String server = "jdbc:postgresql://localhost:5432/" + bd;
+    private static final String driver = "org.postgresql.Driver";
 
 
-    private BasicDataSource ds;
+    private static BasicDataSource ds;
 
-    public DataSource getDataSource() {
+    public static DataSource getDataSource() {
         if (ds == null) {
             ds = new BasicDataSource();
             ds.setUrl(server);

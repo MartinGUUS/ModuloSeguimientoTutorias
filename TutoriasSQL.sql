@@ -1,8 +1,13 @@
+-- Active: 1715003786902@@127.0.0.1@5432@tutorias
+
+drop table areas cascade;
 
 create table areas (
     idAreas serial PRIMARY KEY,
     nombre TEXT
 );
+
+drop table materias cascade;
 
 create table materias (
     idMaterias serial PRIMARY KEY,
@@ -12,13 +17,16 @@ create table materias (
     Foreign Key (fkAreas) REFERENCES areas (idAreas)
 );
 
-
+drop table estatus cascade;
 
 create table estatus (
     idEstatus serial PRIMARY KEY,
     nombreEstatus TEXT,
     descripcion text
 );
+
+drop table usuarios cascade;
+
 create table usuarios (
     idUsuarios serial PRIMARY KEY,
     nombre text,
@@ -31,9 +39,10 @@ create table usuarios (
     direccion text,
     clave text,
     fkEstatus int,
-    Foreign Key (fkEstatus) REFERENCES estatus(idEstatus)
+    Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
 
+drop table tutores cascade;
 
 create table tutores (
     idTutores serial PRIMARY KEY,
@@ -42,6 +51,8 @@ create table tutores (
     Foreign Key (fkUsuarios) REFERENCES usuarios (idUsuarios),
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
+
+drop table alumnos cascade;
 
 create table alumnos (
     matricula varchar(9) NOT NULL PRIMARY KEY,
@@ -55,13 +66,18 @@ create table alumnos (
     Foreign Key (fkTutores) REFERENCES tutores (idTutores)
 );
 
-create table notasAlumnos (
+drop table notas cascade;
+
+create table notas (
+    idNotas serial PRIMARY KEY,
     fkTutores int,
     fkAlumnos varchar(9),
     notas TEXT,
     Foreign Key (fkTutores) REFERENCES tutores (idTutores),
     Foreign Key (fkAlumnos) REFERENCES alumnos (matricula)
 );
+
+drop table tutorias cascade;
 
 create table tutorias (
     idTutorias serial PRIMARY KEY,
@@ -76,6 +92,8 @@ create table tutorias (
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
 
+drop table materias_alumnos cascade;
+
 create table materias_alumnos (
     fkMaterias int,
     fkAlumnos varchar(9),
@@ -85,4 +103,15 @@ create table materias_alumnos (
     Foreign Key (fkAlumnos) REFERENCES alumnos (matricula),
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus),
     Foreign Key (fkMaterias) REFERENCES materias (idMaterias)
+);
+
+drop table mensajes cascade;
+
+create table mensajes(
+    idMensaje serial PRIMARY KEY,
+    mensaje text,
+    fkAlumnoUsuario int,
+    fkTutorUsuario int,
+    Foreign Key (fkAlumnoUsuario) REFERENCES usuarios (idUsuarios),
+    Foreign Key (fkTutorUsuario) REFERENCES usuarios (idUsuarios)
 );

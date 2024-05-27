@@ -65,7 +65,7 @@
 <body>
 <div class="login-container">
     <h1>Tutorias UV</h1>
-    <label for="username">Matricula</label>
+    <label for="username">Correo</label>
     <input type="text" id="username" name="username" >
 
     <label for="password">Clave</label>

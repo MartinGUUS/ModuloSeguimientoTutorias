@@ -15,10 +15,12 @@ public class Usuarios implements Serializable {
     private String correo;
     private String direccion;
     private String password;
+    private int fkEstatus;
+
 
     public Usuarios() {
     }
-    
+
     public Usuarios(int idUsuarios, String nombre, String segundonombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String password) {
         this.idUsuarios = idUsuarios;
         this.nombre = nombre;
@@ -31,7 +33,7 @@ public class Usuarios implements Serializable {
         this.direccion = direccion;
         this.password = password;
     }
-    
+
     public Usuarios(String nombre, String segundonombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String password) {
         this.nombre = nombre;
         this.segundonombre = segundonombre;
@@ -42,6 +44,15 @@ public class Usuarios implements Serializable {
         this.correo = correo;
         this.direccion = direccion;
         this.password = password;
+    }
+
+
+    public int getFkEstatus() {
+        return fkEstatus;
+    }
+
+    public void setFkEstatus(int fkEstatus) {
+        this.fkEstatus = fkEstatus;
     }
 
     public int getIdUsuarios() {

@@ -2,16 +2,16 @@ package Modelo;
 
 import java.io.Serializable;
 
-public class Status implements Serializable {
+public class Estatus implements Serializable {
     
     private int idStatus;
     private String nombreStatus;
     private String descripcion;
 
-    public Status() {
+    public Estatus() {
     }
     
-    public Status(String nombreStatus, String descripcion) {
+    public Estatus(String nombreStatus, String descripcion) {
         this.nombreStatus = nombreStatus;
         this.descripcion = descripcion;
     }

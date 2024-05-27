@@ -2,16 +2,16 @@ package Modelo;
 
 import java.io.Serializable;
 
-public class NotasAlumno implements Serializable {
+public class Notas implements Serializable {
     
     private String fkTutor;
     private String fkAlumno;
     private String notas;
     
-    public NotasAlumno() {
+    public Notas() {
     }
     
-    public NotasAlumno(String fkTutor, String fkAlumno, String notas) {
+    public Notas(String fkTutor, String fkAlumno, String notas) {
         this.fkTutor = fkTutor;
         this.fkAlumno = fkAlumno;
         this.notas = notas;
