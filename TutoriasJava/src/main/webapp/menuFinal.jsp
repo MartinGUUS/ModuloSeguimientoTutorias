@@ -87,30 +87,21 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="logo">Universidad Veracruzana Tutor铆as</div>
+        <div class="logo">Universidad Veracruzana Tutor憝as</div>
         <div class="menu">
-            <a href="#inicio">Inicio</a>
-            <a href="#mensajeria" class="icon">
-                <i class="fas fa-envelope"></i> Mensajer铆a
+            <a href="Mensajes.jsp" class="icon">
+                <i class="fas fa-envelope"></i> Mensajer憝a
             </a>
-            <a href="index.jsp">Cerrar sesi贸n</a>
+            <a href="index.jsp">Cerrar sesi髇</a>
         </div>
     </div>
 
     <div class="content">
         <div class="grid-container">
-            <a href="#opcion1" class="grid-item">Opci贸n 1</a>
-            <a href="#opcion2" class="grid-item">Opci贸n 2</a>
-            <a href="#opcion3" class="grid-item">Opci贸n 3</a>
-            <a href="#opcion4" class="grid-item">Opci贸n 4</a>
-            <a href="#opcion5" class="grid-item">Opci贸n 5</a>
-            <a href="#opcion6" class="grid-item">Opci贸n 6</a>
-            <a href="#opcion7" class="grid-item">Opci贸n 7</a>
-            <a href="#opcion8" class="grid-item">Opci贸n 8</a>
-            <a href="#opcion9" class="grid-item">Opci贸n 9</a>
-            <a href="#opcion10" class="grid-item">Opci贸n 10</a>
-            <a href="#opcion11" class="grid-item">Opci贸n 11</a>
-            <a href="#opcion12" class="grid-item">Opci贸n 12</a>
+            <a href="Alumnos.jsp" class="grid-item">Alumnos</a>
+            <a href="Notas.jsp" class="grid-item">Notas</a>
+            <a href="Tutorias.jsp" class="grid-item">Tutorias</a>
+            <a href="Estadisticas.jsp" class="grid-item">Estadisticas</a>
         </div>
     </div>
 </body>
