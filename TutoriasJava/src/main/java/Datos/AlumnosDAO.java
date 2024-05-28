@@ -11,8 +11,7 @@ public class AlumnosDAO {
     private static Connection conn = null;
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static Alumnos al = null;
-    private static List<Alumnos> alumnos = new ArrayList<>();
+
 
 
     private static final String SQLinsertAlumno = "INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus) " +
@@ -22,7 +21,10 @@ public class AlumnosDAO {
 
 
     public static List<Alumnos> selectAlumnosUno(int fkTutor, String fkAlumno) {
+        List<Alumnos> alumnos = null;
         try {
+            Alumnos al = null;
+            alumnos = new ArrayList<>();
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLSelectUnAlumnos);
             ps.setInt(1, fkTutor);
@@ -57,7 +59,9 @@ public class AlumnosDAO {
     }
 
     public static List<Alumnos> selectAlumnosVarios(int fkTutor) {
+        List<Alumnos> alumnos = null;
         try {
+            Alumnos al = null;
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLSelectVariosAlumnos);
             ps.setInt(1, fkTutor);
@@ -77,8 +81,8 @@ public class AlumnosDAO {
                 int semestre = rs.getInt("semestre");
                 int fkTutorDB = rs.getInt("fkTutor");
                 int fkEstatus = rs.getInt("fkEstatus");
-                al = new Alumnos(matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutorDB, fkEstatus);
-                alumnos.add(al);
+                Alumnos alu = new Alumnos(matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutorDB, fkEstatus);
+                alumnos.add(alu);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

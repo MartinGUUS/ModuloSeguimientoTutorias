@@ -11,8 +11,7 @@ public class NotasDAO {
     private static Connection conn = null;
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static Notas nota = null;
-    private static List<Notas> notaList = new ArrayList<>();
+
 
     private static final String SQLInsertNota = "INSERT INTO notas (fkTutor, fkAlumno, notas) " +
             "VALUES (?, ?, ?);";
@@ -21,7 +20,10 @@ public class NotasDAO {
 
 
     public static List<Notas> selectNotasPorAlumno(String fkAlumno) {
+        List<Notas> notaList = null;
         try {
+            Notas nota = null;
+            notaList = new ArrayList<>();
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLSelectNotasPorAlumno);
             ps.setString(1, fkAlumno);

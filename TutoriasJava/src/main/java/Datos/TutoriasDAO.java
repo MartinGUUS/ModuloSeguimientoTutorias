@@ -1,6 +1,5 @@
 package Datos;
 
-import Modelo.Alumnos;
 import Modelo.Tutorias;
 
 import java.sql.*;
@@ -12,8 +11,7 @@ public class TutoriasDAO {
     private static Connection conn = null;
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static Tutorias tu = null;
-    private static List<Tutorias> tutoriasList = new ArrayList<>();
+
 
     private static final String SQLinsertTutoria = "INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) " +
             "VALUES (?, ?, ?, ?, ?, ?);";
@@ -87,9 +85,11 @@ public class TutoriasDAO {
     }
 
 
-
     public static List<Tutorias> selectTutoriasTutor(int fkTutor) {
+        List<Tutorias> tutoriasList = null;
         try {
+            Tutorias tu = null;
+            tutoriasList = new ArrayList<>();
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLSelectTutoriasPorTutor);
             ps.setInt(1, fkTutor);
@@ -102,7 +102,7 @@ public class TutoriasDAO {
                 String fkAlumno = rs.getString("fkAlumno");
                 int fkTutorDB = rs.getInt("fkTutor");
                 int fkEstatus = rs.getInt("fkEstatus");
-                Tutorias tutoria = new Tutorias(idTutorias, fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus);
+                tu = new Tutorias(idTutorias, fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus);
                 tutoriasList.add(tu);
             }
         } catch (SQLException ex) {
@@ -116,7 +116,10 @@ public class TutoriasDAO {
     }
 
     public static List<Tutorias> selectTutoriasAlumnosTutores(int fkAlumno, int fkTutor) {
+        List<Tutorias> tutoriasList = null;
         try {
+            Tutorias tu = null;
+            tutoriasList = new ArrayList<>();
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLSelectTutoriasPorAlumnoYTutor);
             ps.setInt(1, fkTutor);
@@ -130,7 +133,7 @@ public class TutoriasDAO {
                 String fkAlumnoDB = rs.getString("fkAlumno");
                 int fkTutorDB = rs.getInt("fkTutor");
                 int fkEstatus = rs.getInt("fkEstatus");
-                Tutorias tutoria = new Tutorias(idTutorias, fecha, contexto, duracion, fkAlumnoDB, fkTutorDB, fkEstatus);
+                tu = new Tutorias(idTutorias, fecha, contexto, duracion, fkAlumnoDB, fkTutorDB, fkEstatus);
                 tutoriasList.add(tu);
             }
         } catch (SQLException ex) {
