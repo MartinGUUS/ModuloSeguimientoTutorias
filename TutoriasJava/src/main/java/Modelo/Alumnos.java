@@ -57,6 +57,7 @@ public class Alumnos implements Serializable {
         this.fkEstatus = fkEstatus;
     }
 
+
     public static String getMatricula() {
         return matricula;
     }
@@ -168,4 +169,5 @@ public class Alumnos implements Serializable {
     public static void setFkEstatus(int fkEstatus) {
         Alumnos.fkEstatus = fkEstatus;
     }
+
 }
