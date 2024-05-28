@@ -4,111 +4,90 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Tutorias implements Serializable {
-
-    private int idTutorias;
-    private Date fecha;
-    private String contexto;
-    private int duracion;
-    private String fkAlumno;
-    private String fkTutor;
-    private int fkStatus;
-    private String nombreAlumno;
-    private String apellidoPaternoAlumno;
-    private String apellidoMaternoAlumno;
-    private String nombreTutor;
-    private String apellidoPaternoTutor;
-    private String apellidoMaternoTutor;
-
-
-    public Tutorias(int idTutorias, Date fecha, int duracion, String temasTratados, String nombreAlumno, String apellidoPaternoAlumno, String apellidoMaternoAlumno, String nombreTutor, String apellidoPaternoTutor, String apellidoMaternoTutor) {
-        this.idTutorias = idTutorias;
-        this.fecha = fecha;
-        this.duracion = duracion;
-        this.contexto = temasTratados;
-        this.nombreAlumno = nombreAlumno;
-        this.apellidoPaternoAlumno = apellidoPaternoAlumno;
-        this.apellidoMaternoAlumno = apellidoMaternoAlumno;
-        this.nombreTutor = nombreTutor;
-        this.apellidoPaternoTutor = apellidoPaternoTutor;
-        this.apellidoMaternoTutor = apellidoMaternoTutor;
-    }
+    private static int idTutorias;
+    private static Date fecha;
+    private static String contexto;
+    private static int duracion;
+    private static String fkAlumno;
+    private static int fkTutor;
+    private static int fkEstatus;
 
     public Tutorias() {
+
     }
 
-    public Tutorias(int idTutorias, Date fecha, String contexto, int duracion, String fkAlumno, String fkTutor, int fkStatus) {
+    public Tutorias(int idTutorias, Date fecha, String contexto, int duracion, String fkAlumno, int fkTutor, int fkEstatus) {
         this.idTutorias = idTutorias;
         this.fecha = fecha;
         this.contexto = contexto;
         this.duracion = duracion;
         this.fkAlumno = fkAlumno;
         this.fkTutor = fkTutor;
-        this.fkStatus = fkStatus;
+        this.fkEstatus = fkEstatus;
     }
 
-    public Tutorias(Date fecha, String contexto, int duracion, String fkAlumno, String fkTutor, int fkStatus) {
+    public Tutorias(Date fecha, String contexto, int duracion, String fkAlumno, int fkTutor, int fkEstatus) {
         this.fecha = fecha;
         this.contexto = contexto;
         this.duracion = duracion;
         this.fkAlumno = fkAlumno;
         this.fkTutor = fkTutor;
-        this.fkStatus = fkStatus;
+        this.fkEstatus = fkEstatus;
     }
 
-
-    public int getIdTutorias() {
+    public static int getIdTutorias() {
         return idTutorias;
     }
 
-    public void setIdTutorias(int idTutorias) {
-        this.idTutorias = idTutorias;
+    public static void setIdTutorias(int idTutorias) {
+        Tutorias.idTutorias = idTutorias;
     }
 
-    public Date getFecha() {
+    public static Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public static void setFecha(Date fecha) {
+        Tutorias.fecha = fecha;
     }
 
-    public String getContexto() {
+    public static String getContexto() {
         return contexto;
     }
 
-    public void setContexto(String contexto) {
-        this.contexto = contexto;
+    public static void setContexto(String contexto) {
+        Tutorias.contexto = contexto;
     }
 
-    public int getDuracion() {
+    public static int getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
+    public static void setDuracion(int duracion) {
+        Tutorias.duracion = duracion;
     }
 
-    public String getFkAlumno() {
+    public static String getFkAlumno() {
         return fkAlumno;
     }
 
-    public void setFkAlumno(String fkAlumno) {
-        this.fkAlumno = fkAlumno;
+    public static void setFkAlumno(String fkAlumno) {
+        Tutorias.fkAlumno = fkAlumno;
     }
 
-    public String getFkTutor() {
+    public static int getFkTutor() {
         return fkTutor;
     }
 
-    public void setFkTutor(String fkTutor) {
-        this.fkTutor = fkTutor;
+    public static void setFkTutor(int fkTutor) {
+        Tutorias.fkTutor = fkTutor;
     }
 
-    public int getFkStatus() {
-        return fkStatus;
+    public static int getFkEstatus() {
+        return fkEstatus;
     }
 
-    public void setFkStatus(int fkStatus) {
-        this.fkStatus = fkStatus;
+    public static void setFkEstatus(int fkEstatus) {
+        Tutorias.fkEstatus = fkEstatus;
     }
 }

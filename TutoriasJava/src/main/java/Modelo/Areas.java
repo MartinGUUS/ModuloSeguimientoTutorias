@@ -4,29 +4,29 @@ import java.io.Serializable;
 
 public class Areas implements Serializable {
 
-    private int idAreas;
-    private String nombre;
+    private static int idAreas;
+    private static String nombre;
 
     public Areas() {
     }
-    
+
     public Areas(String nombre) {
         this.nombre = nombre;
     }
-    
-    public int getIdAreas() {
+
+    public static int getIdAreas() {
         return idAreas;
     }
 
-    public void setIdAreas(int idAreas) {
-        this.idAreas = idAreas;
+    public static void setIdAreas(int idAreas) {
+        Areas.idAreas = idAreas;
     }
 
-    public String getNombre() {
+    public static String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public static void setNombre(String nombre) {
+        Areas.nombre = nombre;
     }
 }

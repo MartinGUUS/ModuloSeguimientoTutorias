@@ -6,33 +6,30 @@
 
 
 drop table if exists mensajes cascade;
-
+drop table if exists usuarios cascade;
 drop table if exists materias_alumnos cascade;
-
 drop table if exists tutorias cascade;
-
 drop table if exists notas cascade;
-
 drop table if exists alumnos cascade;
-
 drop table if exists tutores cascade;
-
 drop table if exists estatus cascade;
-
 drop table if exists materias cascade;
-
 drop table if exists areas cascade;
 
+
+--------------------------------------------------------------------------------------
 create table areas (
     idAreas serial PRIMARY KEY,
     nombre text
 );
+--------------------------------------------------------------------------------------
 
 create table estatus (
     idEstatus serial PRIMARY KEY,
     nombreEstatus text,
     descripcion text
 );
+--------------------------------------------------------------------------------------
 
 create table tutores (
     idTutores serial PRIMARY KEY,
@@ -48,6 +45,7 @@ create table tutores (
     fkEstatus int,
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
+--------------------------------------------------------------------------------------
 
 create table alumnos (
     matricula varchar(9) PRIMARY KEY,
@@ -67,6 +65,7 @@ create table alumnos (
     Foreign Key (fkTutor) REFERENCES tutores (idTutores),
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
+--------------------------------------------------------------------------------------
 
 create table materias (
     idMaterias serial PRIMARY KEY,
@@ -75,6 +74,7 @@ create table materias (
     fkArea int,
     Foreign Key (fkArea) REFERENCES areas (idAreas)
 );
+--------------------------------------------------------------------------------------
 
 create table notas (
     idNotas serial PRIMARY KEY,
@@ -84,6 +84,7 @@ create table notas (
     Foreign Key (fkTutor) REFERENCES tutores (idTutores),
     Foreign Key (fkAlumno) REFERENCES alumnos (matricula)
 );
+--------------------------------------------------------------------------------------
 
 create table tutorias (
     idTutorias serial PRIMARY KEY,
@@ -97,6 +98,7 @@ create table tutorias (
     Foreign Key (fkAlumno) REFERENCES alumnos (matricula),
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus)
 );
+--------------------------------------------------------------------------------------
 
 create table materias_alumnos (
     fkMaterias int,
@@ -108,6 +110,7 @@ create table materias_alumnos (
     Foreign Key (fkEstatus) REFERENCES estatus (idEstatus),
     Foreign Key (fkMaterias) REFERENCES materias (idMaterias)
 );
+--------------------------------------------------------------------------------------
 
 create table mensajes (
     idMensajes serial PRIMARY KEY,
@@ -117,3 +120,4 @@ create table mensajes (
     Foreign Key (fkTutor) REFERENCES tutores (idTutores),
     Foreign Key (fkAlumno) REFERENCES alumnos (matricula)
 );
+--------------------------------------------------------------------------------------

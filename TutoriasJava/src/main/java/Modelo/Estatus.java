@@ -3,40 +3,40 @@ package Modelo;
 import java.io.Serializable;
 
 public class Estatus implements Serializable {
-    
-    private int idStatus;
-    private String nombreStatus;
-    private String descripcion;
+
+    private static int idEstatus;
+    private static String nombre;
+    private static String descripcion;
 
     public Estatus() {
     }
-    
-    public Estatus(String nombreStatus, String descripcion) {
-        this.nombreStatus = nombreStatus;
+
+    public Estatus(String nombre, String descripcion) {
+        this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public int getIdStatus() {
-        return idStatus;
+    public static int getIdEstatus() {
+        return idEstatus;
     }
 
-    public void setIdStatus(int idStatus) {
-        this.idStatus = idStatus;
+    public static void setIdEstatus(int idEstatus) {
+        Estatus.idEstatus = idEstatus;
     }
 
-    public String getNombreStatus() {
-        return nombreStatus;
+    public static String getNombre() {
+        return nombre;
     }
 
-    public void setNombreStatus(String nombreStatus) {
-        this.nombreStatus = nombreStatus;
+    public static void setNombre(String nombre) {
+        Estatus.nombre = nombre;
     }
 
-    public String getDescripcion() {
+    public static String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public static void setDescripcion(String descripcion) {
+        Estatus.descripcion = descripcion;
     }
 }

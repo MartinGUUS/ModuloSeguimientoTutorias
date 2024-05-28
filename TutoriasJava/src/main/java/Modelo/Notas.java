@@ -3,41 +3,57 @@ package Modelo;
 import java.io.Serializable;
 
 public class Notas implements Serializable {
-    
-    private String fkTutor;
-    private String fkAlumno;
-    private String notas;
-    
+
+    private static int idNotas;
+    private static int fkTutor;
+    private static String fkAlumno;
+    private static String notas;
+
     public Notas() {
     }
-    
-    public Notas(String fkTutor, String fkAlumno, String notas) {
+
+    public Notas(int idNotas, int fkTutor, String fkAlumno, String notas) {
+        this.idNotas = idNotas;
         this.fkTutor = fkTutor;
         this.fkAlumno = fkAlumno;
         this.notas = notas;
     }
 
-    public String getFkTutor() {
+    public Notas(int fkTutor, String fkAlumno, String notas) {
+        this.fkTutor = fkTutor;
+        this.fkAlumno = fkAlumno;
+        this.notas = notas;
+    }
+
+    public static int getIdNotas() {
+        return idNotas;
+    }
+
+    public static void setIdNotas(int idNotas) {
+        Notas.idNotas = idNotas;
+    }
+
+    public static int getFkTutor() {
         return fkTutor;
     }
 
-    public void setFkTutor(String fkTutor) {
-        this.fkTutor = fkTutor;
+    public static void setFkTutor(int fkTutor) {
+        Notas.fkTutor = fkTutor;
     }
 
-    public String getFkAlumno() {
+    public static String getFkAlumno() {
         return fkAlumno;
     }
 
-    public void setFkAlumno(String fkAlumno) {
-        this.fkAlumno = fkAlumno;
+    public static void setFkAlumno(String fkAlumno) {
+        Notas.fkAlumno = fkAlumno;
     }
 
-    public String getNotas() {
+    public static String getNotas() {
         return notas;
     }
 
-    public void setNotas(String notas) {
-        this.notas = notas;
+    public static void setNotas(String notas) {
+        Notas.notas = notas;
     }
 }
