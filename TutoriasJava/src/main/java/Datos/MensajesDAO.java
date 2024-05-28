@@ -1,7 +1,6 @@
 package Datos;
 
 import Modelo.Mensajes;
-import Modelo.Tutorias;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,8 +13,8 @@ public class MensajesDAO {
     private static ResultSet rs = null;
 
 
-    private static final String SQLinsertMensaje = "INSERT INTO mensajes (mensaje, fkTutor, fkAlumno)" +
-            " VALUES (?, ?, ?)";
+    private static final String SQLinsertMensaje = "INSERT INTO mensajes (mensaje, asunto, fkTutor, fkAlumno)" +
+            " VALUES (?, ?, ?, ?)";
     private static final String SQLselectMensajesPorAlumno = "SELECT * FROM mensajes WHERE fkAlumno = ?";
     private static final String SQLselectMensajesPorTutor = "SELECT * FROM mensajes WHERE fkTutor = ?";
 
@@ -32,9 +31,10 @@ public class MensajesDAO {
             while (rs.next()) {
                 int idMensajes = rs.getInt("idMensajes");
                 String mensaje = rs.getString("mensaje");
+                String asunto = rs.getString("asunto");
                 int fkTutordb = rs.getInt("fkTutor");
                 String fkAlumno = rs.getString("fkAlumno");
-                me = new Mensajes(idMensajes, mensaje, fkTutordb, fkAlumno);
+                me = new Mensajes(idMensajes, mensaje, asunto, fkTutordb, fkAlumno);
                 mensajesList.add(me);
             }
         } catch (SQLException ex) {
@@ -59,9 +59,10 @@ public class MensajesDAO {
             while (rs.next()) {
                 int idMensajes = rs.getInt("idMensajes");
                 String mensaje = rs.getString("mensaje");
+                String asunto = rs.getString("asunto");
                 int fkTutor = rs.getInt("fkTutor");
                 String fkAlumnodb = rs.getString("fkAlumno");
-                me = new Mensajes(idMensajes, mensaje, fkTutor, fkAlumnodb);
+                me = new Mensajes(idMensajes, mensaje, asunto, fkTutor, fkAlumnodb);
                 mensajesList.add(me);
             }
         } catch (SQLException ex) {
@@ -79,8 +80,9 @@ public class MensajesDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLinsertMensaje);
             ps.setString(1, men.getMensaje());
-            ps.setInt(2, men.getFkTutor());
-            ps.setString(3, men.getFkAlumno());
+            ps.setString(2, men.getAsunto());
+            ps.setInt(3, men.getFkTutor());
+            ps.setString(4, men.getFkAlumno());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);

@@ -6,17 +6,27 @@ public class Mensajes implements Serializable {
 
     private static int idMensajes;
     private static String mensaje;
+    private static String asunto;
     private static int fkTutor;
     private static String fkAlumno;
 
     public Mensajes() {
     }
 
-    public Mensajes(int idMensajes, String mensaje, int fkTutor, String fkAlumno) {
+    public Mensajes(int idMensajes, String mensaje, String asunto, int fkTutor, String fkAlumno) {
         this.idMensajes = idMensajes;
         this.mensaje = mensaje;
+        this.asunto = asunto;
         this.fkTutor = fkTutor;
         this.fkAlumno = fkAlumno;
+    }
+
+    public static String getAsunto() {
+        return asunto;
+    }
+
+    public static void setAsunto(String asunto) {
+        Mensajes.asunto = asunto;
     }
 
     public Mensajes(String mensaje, int fkTutor, String fkAlumno) {

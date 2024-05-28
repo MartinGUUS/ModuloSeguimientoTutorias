@@ -115,6 +115,7 @@ create table materias_alumnos (
 create table mensajes (
     idMensajes serial PRIMARY KEY,
     mensaje text,
+    asunto text,
     fkTutor int,
     fkAlumno varchar,
     Foreign Key (fkTutor) REFERENCES tutores (idTutores),
