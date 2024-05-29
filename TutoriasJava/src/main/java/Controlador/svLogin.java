@@ -64,10 +64,12 @@ public class svLogin extends HttpServlet {
                 } else if (tu && !al) {
                     System.out.println("vamos para tutores menu");
                     request.getSession().setAttribute("nameTutor", nombretutores);
+                    request.getSession().setAttribute("idTutorLogin", idTutores);
                     response.sendRedirect("menuTutor.jsp");
                 } else if (!tu && al) {
                     System.out.println("vamos para Alumnos menu");
                     request.getSession().setAttribute("nombreAlumno", nombrealumnos);
+                    request.getSession().setAttribute("matriculaAlumno", matricula);
                     response.sendRedirect("menuAlumno.jsp");
                 }
 

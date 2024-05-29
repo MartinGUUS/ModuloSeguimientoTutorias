@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,24 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="menuTutor.css"> <!-- Vincula el archivo CSS externo -->
 
+    <%
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+        if ((session.getAttribute("nameTutor") == null && session.getAttribute("idTutores") == null)) {
+            response.sendRedirect("index.jsp");
+        }
+    %>
 
 </head>
 <body>
-<div class="navbar">
-    <div class="logo">Universidad Veracruzana Tutorí­as</div>
-    <div class="menu">
+<form action="svCloseSession" method="POST">
+    <div class="navbar">
+        <div class="logo">Universidad Veracruzana TutorÃ­as</div>
+        <div class="menu">
 
-        <%
-            String tutorName = (String) request.getSession().getAttribute("nameTutor");
-        %>
-        <a href="index.jsp"><%=tutorName%></a>
+            <%
+                String tutorName = (String) request.getSession().getAttribute("nameTutor");
+            %>
+            <a href="index.jsp"><%=tutorName%>
+            </a>
 
-        <a href="Mensajes.jsp" class="icon">
-            <i class="fas fa-envelope"></i> Mensajerí­a
-        </a>
-        <a href="index.jsp">Cerrar sesión</a>
+            <a href="Mensajes.jsp" class="icon">
+                <i class="fas fa-envelope"></i> MensajerÃ­Â­a
+            </a>
+            <button type="submit" name="action" value="cerrarSesion">Cerrar sesiÃ³n</button>
+        </div>
     </div>
-</div>
+</form>
 
 <div class="content">
     <div class="grid-container">
