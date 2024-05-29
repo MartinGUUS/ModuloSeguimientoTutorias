@@ -115,7 +115,7 @@
         <div class="navbar">
             <div class="logo">Lista y detalle de tutorados</div>
             <div class="menu">
-                <a href="menuFinal.jsp">Inicio</a>
+                <a href="menuTutor.jsp">Inicio</a>
                 <a href="index.jsp">Cerrar sesión</a>
             </div>
         </div>

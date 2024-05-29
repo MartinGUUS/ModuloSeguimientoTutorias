@@ -138,7 +138,7 @@
         <div class="navbar">
             <div class="logo">Lista y detalle de tutorados</div>
             <div class="menu">
-                <a href="menuFinal.jsp">Inicio</a>
+                <a href="menuTutor.jsp">Inicio</a>
                 <a href="Mensajes.jsp" class="icon">
                     <i class="fas fa-envelope"></i> Mensajería
                 </a>

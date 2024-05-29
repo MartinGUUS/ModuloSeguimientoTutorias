@@ -1,8 +1,11 @@
 package Datos;
 
+import Modelo.Alumnos;
 import Modelo.Tutores;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TutoresDAO {
@@ -11,8 +14,48 @@ public class TutoresDAO {
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
 
+    private static final String SQLSelectTutores = "SELECT * FROM tutores ";
+
     private static final String insertTutor = "INSERT INTO tutores (nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    public static List<Tutores> selectTutoresVarios() {
+        List<Tutores> tutores = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            Tutores tu = null;
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SQLSelectTutores);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int idTutor = rs.getInt("idTutores");
+                String nombre = rs.getString("nombre");
+                String segundoNombre = rs.getString("segundoNombre");
+                String apPaterno = rs.getString("apPaterno");
+                String apMaterno = rs.getString("apMaterno");
+                Date fechaNac = rs.getDate("fechaNac");
+                String numero = rs.getString("numero");
+                String correo = rs.getString("correo");
+                String direccion = rs.getString("direccion");
+                String contra = rs.getString("contra");
+
+                int fkEstatus = rs.getInt("fkEstatus");
+                Tutores tut = new Tutores(idTutor, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus);
+                tutores.add(tut);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return tutores;
+    }
+
+
 
     public void insertTutor(Tutores tutor) {
         try {
