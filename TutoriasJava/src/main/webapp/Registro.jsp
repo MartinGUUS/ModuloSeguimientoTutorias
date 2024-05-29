@@ -100,57 +100,66 @@
             <form action="index.jsp" method="post">
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" name="nombre" > <br>
-
+            
+            <label for="segnombre">Segundo nombre: </label>
+            <input type="text" id="segnombre" name="segnombre" > <br>
+            
             <label for="paterno">Apellido paterno: </label>
             <input type="text" id="paterno" name="paterno" > <br>
-
+            
             <label for="materno">Apellido Materno: </label>
             <input type="text" id="materno" name="materno" > <br>
-
+            <!--
             <label for="edad">Edad: </label>
             <input type="number" id="edad" name="edad" > <br>
-
+            -->
             <label for="nacimiento">Fecha de nacimiento: </label>
             <input type="date" id="nacimiento" name="nacimiento" > <br><br>
-
-            <label for="telefono">Telefono: </label>
+            
+            <label for="telefono">Teléfono: </label>
             <input type="text" id="telefono" name="telefono" > <br>
-
+            
             <label for="correo">Correo: </label>
             <input type="text" id="correo" name="correo" > <br>
-
-            <label for="direccion">Direccion: </label>
+            
+            <label for="direccion">Dirección: </label>
             <input type="text" id="direccion" name="direccion" > <br>
-
+            
+            <label for="contra">Crea una contraseña: </label>
+            <input type="text" id="contra" name="contra" > <br>
+            
             <br>
             <b>Rol:</b> <br>
             <input type="radio" id="alumno" name="rol" onclick="toggleActions()">
             <label for="alumno">Tutorado</label>
-
+            
             <input type="radio" id="tutor" name="rol" onclick="toggleActions()">
             <label for="tutor">Tutor</label>
-
+            
             <div id="alumno-actions" class="actions">
                 <label for="matricula">Matricula: </label>
                 <input type="text" id="matricula" name="matricula" > <br>
-
+                
                 <label for="carrera">Carrera: </label>
                 <input type="text" id="carrera" name="carrera" > <br>
-
+                
                 <label for="semestre">Semestre: </label>
                 <input type="number" id="semestre" name="semestre" > <br>
+                
+                <label for="tutoralu">Nombre del tutor: </label>
+                <input type="text" id="tutoralu" name="tutoralu" > <br>
             </div>
-
+            
             <div id="tutor-actions" class="actions">
-                <label for="matriculaa">Matricula: </label>
-                <input type="text" id="matriculaa" name="matriculaa" > <br>
+                <!--<label for="matriculaa">Matricula: </label>
+                <input type="text" id="matriculaa" name="matriculaa" > <br>-->
             </div>
-
+            
             <br><br>
-
+            
             <input type="button" value="Registrar">
             </form>
-
+            
             <form action="index.jsp" method="post">
                 <input type="submit" value="Volver">
             </form>
