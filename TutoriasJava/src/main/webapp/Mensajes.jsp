@@ -87,7 +87,6 @@
                 font-size: 16px;
                 cursor: pointer;
                 transition: background-color 0.3s;
-                margin-left: 5px;
             }
             .button-container button:hover {
                 background-color: #2575fc;
@@ -148,7 +147,6 @@
         <div class="content">
             <div class="grid-container">
                 <div class="button-container">
-                    <button onclick="">Borrar Mensaje</button>
                     <button onclick="window.location.href='redactarMensaje.jsp'">Nuevo Mensaje</button>
                 </div>
                 <div class="msj-list">
@@ -157,10 +155,10 @@
                             <td><a href="#" onclick="showMessageDetails('Alberto Caballero', 'Reunión de equipo', '2024-05-01', 'jfvhbsjcdhfhfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.')">Alberto Caballero</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" onclick="showMessageDetails('Martin Gustavo', 'Actualización del proyecto', '2024-05-02', 'schcnjksdchyhjckajkjsajjjsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss.')">Martin Gustavo</a></td>
+                            <td><a href="#" onclick="showMessageDetails('Martin Gustavo', 'Actualización del proyecto', '2024-05-02', 'schcnjksdchyhjckajkjsajjjsssssssssssssssssssssssssssssssssss.')">Martin Gustavo</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" onclick="showMessageDetails('Tutor', 'Tutoria', '2024-05-03', 'kskjjdjdjdhhfhfhfhfydddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.')">Tutora</a></td>
+                            <td><a href="#" onclick="showMessageDetails('Tutor', 'Tutoria', '2024-05-03', 'kskjjdjdjdhhfhfhfhfydddddddddddddddddddddddddddd.')">Tutora</a></td>
                         </tr>
                     </table>
                 </div>

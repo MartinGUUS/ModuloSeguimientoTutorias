@@ -6,41 +6,146 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head><title>DISEÑO UV</title>
-        <meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600" rel="stylesheet" type="text/css" />
-
-        
+<html>
+    <head>
+        <title>Registro de tutoria</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(to right, #6a11cb, #2575fc);
+                height: 100vh;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            .navbar {
+                background-color: white;
+                color: #333;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 10px 10px;
+                margin-bottom: 10px;
+            }
+            .navbar .logo {
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .navbar .menu {
+                display: flex;
+                gap: 20px;
+            }
+            .navbar .menu a {
+                color: #333;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            .navbar .menu a:hover {
+                background-color: #2575fc;
+                color: white;
+            }
+            .navbar .icon {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            .tuto-cont {
+                background: white;
+                padding: 20px 40px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                width: 700px;
+                height: 500px;
+                margin: auto;
+                box-sizing: border-box;
+            }
+            .tuto-cont h1 {
+                margin-bottom: 15px;
+                font-size: 24px;
+                text-align: left;
+                color: #333;
+            }
+            .tuto-cont label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+                text-align: left;
+                color: #666;
+            }
+            .tuto-cont input[type="text"] {
+                width: 400px;
+                padding: 7px;
+                margin-bottom: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            .tuto-cont input[type="number"] {
+                width: 45px;
+                height: 20px;
+                margin-bottom: 5px;
+            }
+            .tuto-cont input[type="date"] {
+                width: 100px;
+                height: 20px;
+                margin-bottom: 5px;
+            }
+            .tuto-cont textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+            }
+            .tuto-cont button {
+                width: 250px;
+                padding: 5px;
+                background-color: #6a11cb;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .tuto-cont button:hover {
+                background-color: #2575fc;
+            }
+        </style>
     </head>
     <body>
-
-        <form method="post" action="./avance" id="form1">
-            <div class="aspNetHidden">
-                <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="WWW0IdxGq8U95GVL06EYpB5l6ePGp9Rm8kz2tRuczzNp0k07bqkHkVhmpFxANvRyoDZ87uAbB6eVnyHzcsG5/dnmC5KYcfEgModTT3lsxzhw/lV1VZfk0fSyi6vn+VM/87H/U4x7+4PAvlr9qgGpCV0mAYQirc/ApvD7eeQpura2f3lgCfJNu3lDj4fd7AzOiGWwpnbyGYhaQvqjmaB+0Opi/u1t0kSjFcxq8mPYrz4AkUbTjHljp1hIC+zGG4IzMgiack2IX4X3rmuZFIVUAFkSdZLE6sC0md6Q7zO0/fjGzx0bHr999PnBw/WOclULIEA6SmEMhOTrkorWSI9GEigq9G8Az+DdNuUqJXhxWCShw1w3203qMbufOLlvu+TVCh99K2HYVnAOKu3uULXm+gLTUC3QM7qHkAXRjEd88JO9NALvZHMyrxRR6UEritc/hhuj0ogDpOG2OvjA/q1uxlCTORxutb4CGfKoOmgrEWg=" />
+        <div class="navbar">
+            <div class="logo">Redactar mensajes</div>
+            <div class="menu">
+                <a href="menuTutor.jsp">Inicio</a>
+                <a href="index.jsp">Cerrar sesión</a>
             </div>
+        </div>
 
-            <div class="aspNetHidden">
-
-                <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6D8ED794" />
-            </div>
-            <div class="contenedor-iavance">
-
-                <iframe src="https://dsiapes.uv.mx/MiUVTrayectoria/default.aspx?p=CtAxhhHsH/Sg7VGI7avuAQhmlTUvwBVtui/cL7rHnHM=" id="contenido_i_avance" scrolling="yes" class="iavance"></iframe> 
-                <div id="divEspere" class="modal fadeIn" role="dialog" style="display:initial">
-                    <div class="modal-dialog">
-                        <div class="col-md-12" style="text-align: center; padding-top: 30px;">
-                            <div class="loader-inner ball-scale-multiple">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12" style="text-align: center;">
-                            <h3 style="text-align: center; padding-top: 30px; font-weight: bold; color: #FFF !important; font-size: 16px;" class="mensaje-modal">Espere...</h3>
-                        </div>
-                    </div>
+        <div class="tuto-cont">
+            <h1>Registro de tutorías</h1>
+            <form action="action">
+                <label id="fecha">Fecha:</label>
+                <input type="date" name="fecha">
+                <label id="asunto">Asunto:</label>
+                <input type="text" name="asunto">
+                <label id="duracion">Duración en minutos:</label>
+                <input type="number" name="duracion">
+                <label id="ldescripcion">Describe la tutoria:</label>
+                <textarea id="descripcion" name="descripcion" rows="10" cols="10"></textarea>
+                <div class="button-container">
+                <button type="submit">Registrar tutoria</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </body>
 </html>

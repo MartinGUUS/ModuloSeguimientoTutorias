@@ -59,12 +59,6 @@
                 margin: auto;
                 box-sizing: border-box;
             }
-            .msj-container h1 {
-                margin-bottom: 30px;
-                font-size: 24px;
-                text-align: left;
-                color: #333;
-            }
             .msj-container label {
                 font-weight: bold;
                 display: block;
@@ -80,7 +74,7 @@
                 border-radius: 5px;
                 box-sizing: border-box;
             }
-            .msj-container input[type="text"], textarea {
+            .msj-container textarea {
                 width: 100%;
                 padding: 10px;
                 margin-bottom: 20px;
@@ -117,15 +111,15 @@
 
         <div class="msj-container">
             <form action="">
-                <label for="tutor">Para:</label>
-                <input type="text" id="tutor" name="tutor" placeholder="tutor@uv.mx...">
-
-                <label for="asunto">Asunto:</label>
-                <input type="text" id="asunto" name="asunto" placeholder="Tutorias...">
-
-                <label for="msj">Mensaje:</label>
-                <textarea id="msj" name="msj" rows="10" placeholder="Escribe tu mensaje..."></textarea>
-
+                <label id="tutor">Para:</label>
+                <input type="text" name="tutor" placeholder="tutor@uv.mx...">
+                
+                <label id="asunto">Asunto:</label>
+                <input type="text" name="asunto" placeholder="Tutorias...">
+                
+                <label id="msj">Mensaje:</label>
+                <textarea name="msj" rows="10" placeholder="Escribe tu mensaje..."></textarea>
+                
                 <button type="submit">Enviar Mensaje</button>
             </form>
         </div>
