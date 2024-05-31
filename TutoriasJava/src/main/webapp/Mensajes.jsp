@@ -139,15 +139,19 @@
         <div class="navbar">
             <div class="logo">Bandeja de Entrada</div>
             <div class="menu">
+                <%
+                    String nombreAl = (String) request.getSession().getAttribute("nombreAlumno");
+                %>
+                <a href=""><%= nombreAl%>
+                </a>
                 <a href="menu.jsp">Inicio</a>
-                <a href="index.jsp">Cerrar sesión</a>
             </div>
         </div>
 
         <div class="content">
             <div class="grid-container">
                 <div class="button-container">
-                    <button onclick="window.location.href='redactarMensaje.jsp'">Nuevo Mensaje</button>
+                    <button onclick="window.location.href = 'redactarMensaje.jsp'">Nuevo Mensaje</button>
                 </div>
                 <div class="msj-list">
                     <table border=".5">

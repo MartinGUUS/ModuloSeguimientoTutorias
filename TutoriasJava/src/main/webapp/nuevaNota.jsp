@@ -49,7 +49,7 @@
                 align-items: center;
                 gap: 5px;
             }
-            .msj-container {
+            .container {
                 background: white;
                 padding: 40px;
                 border-radius: 10px;
@@ -59,14 +59,14 @@
                 margin: auto;
                 box-sizing: border-box;
             }
-            .msj-container label {
+            .container label {
                 font-weight: bold;
                 display: block;
                 margin-bottom: 10px;
                 text-align: left;
                 color: #666;
             }
-            .msj-container input[type="text"] {
+            .container input[type="text"] {
                 width: 100%;
                 padding: 12px;
                 margin-bottom: 20px;
@@ -74,7 +74,7 @@
                 border-radius: 5px;
                 box-sizing: border-box;
             }
-            .msj-container textarea {
+            .container textarea {
                 width: 100%;
                 padding: 10px;
                 margin-bottom: 20px;
@@ -82,7 +82,7 @@
                 border-radius: 4px;
                 box-sizing: border-box;
             }
-            .msj-container button {
+            .container button {
                 width: 100%;
                 padding: 12px;
                 background-color: #6a11cb;
@@ -94,10 +94,9 @@
                 transition: background-color 0.3s;
                 margin-bottom: 10px;
             }
-            .msj-container button:hover {
+            .container button:hover {
                 background-color: #2575fc;
             }
-
         </style>
     </head>
     <body>
@@ -113,18 +112,14 @@
             </div>
         </div>
 
-        <div class="msj-container">
+        <div class="container">
             <form action="">
-                <label id="tutor">Para:</label>
-                <input type="text" name="tutor" placeholder="tutor@uv.mx...">
+                <label id="titulo">Titulo:</label>
+                <input type="text" name="titulo" placeholder="Observación...">
 
-                <label id="asunto">Asunto:</label>
-                <input type="text" name="asunto" placeholder="Tutorias...">
+                <textarea name="nota" rows="10"></textarea>
 
-                <label id="msj">Mensaje:</label>
-                <textarea name="msj" rows="10" placeholder="Escribe tu mensaje..."></textarea>
-
-                <button type="submit">Enviar Mensaje</button>
+                <button type="submit">Guardar nota</button>
             </form>
         </div>
     </body>
