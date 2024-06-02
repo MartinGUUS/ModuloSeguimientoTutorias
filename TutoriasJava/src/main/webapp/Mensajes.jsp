@@ -65,7 +65,7 @@
                 padding: 40px;
                 border-radius: 10px;
                 box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-                max-width: 900px;
+                max-width: 1000px;
                 width: 100%;
                 box-sizing: border-box;
                 display: grid;
@@ -97,20 +97,52 @@
             }
             .msj-list {
                 height: 100%;
+                width: 300px;
                 overflow-y: scroll;
                 border-right: 1px solid #ccc;
             }
-            .msj-list table {
-                width: 100%;
-            }
             .msj-list a {
-                width: 100%;
+                display: block;
                 color: #2575fc;
                 text-decoration: none;
                 font-weight: bold;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                transition: background-color 0.3s;
             }
+
             .msj-list a:hover {
-                text-decoration: underline;
+                background-color: #f0f0f0;
+            }
+
+            .message-summary {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sender {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .message-details {
+                display: flex;
+                justify-content: space-between;
+                font-size: 12px;
+                color: #555;
+            }
+
+            .subject {
+                flex: 2;
+            }
+
+            .date {
+                flex: 1;
+                text-align: right;
+            }
+
+            .msj-list table {
+                width: 100%;
             }
             .details {
                 background-color: #f9f9f9;
@@ -156,13 +188,43 @@
                 <div class="msj-list">
                     <table border=".5">
                         <tr>
-                            <td><a href="#" onclick="showMessageDetails('Alberto Caballero', 'Reunión de equipo', '2024-05-01', 'jfvhbsjcdhfhfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.')">Alberto Caballero</a></td>
+                            <td>
+                                <a href="#" onclick="showMessageDetails('Alberto Caballero', 'Reunión de equipo', '2024-05-01', 'jfvhbsjcdhfh...')">
+                                    <div class="message-summary">
+                                        <span class="sender">Alberto Caballero</span>
+                                        <div class="message-details">
+                                            <span class="subject">Reunión de equipo</span>
+                                            <span class="date">2024-05-01</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td><a href="#" onclick="showMessageDetails('Martin Gustavo', 'Actualización del proyecto', '2024-05-02', 'schcnjksdchyhjckajkjsajjjsssssssssssssssssssssssssssssssssss.')">Martin Gustavo</a></td>
+                            <td>
+                                <a href="#" onclick="showMessageDetails('Martin Gustavo', 'Actualización del proyecto', '2024-05-02', 'schcnjksdchy...')">
+                                    <div class="message-summary">
+                                        <span class="sender">Martin Gustavo</span>
+                                        <div class="message-details">
+                                            <span class="subject">Actualización del proyecto</span>
+                                            <span class="date">2024-05-02</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td><a href="#" onclick="showMessageDetails('Tutor', 'Tutoria', '2024-05-03', 'kskjjdjdjdhhfhfhfhfydddddddddddddddddddddddddddd.')">Tutora</a></td>
+                            <td>
+                                <a href="#" onclick="showMessageDetails('Tutor', 'Tutoria', '2024-05-03', 'kskjjdjdjdhh...')">
+                                    <div class="message-summary">
+                                        <span class="sender">Tutor</span>
+                                        <div class="message-details">
+                                            <span class="subject">Tutoria</span>
+                                            <span class="date">2024-05-03</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
                         </tr>
                     </table>
                 </div>

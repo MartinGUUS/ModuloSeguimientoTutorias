@@ -28,7 +28,7 @@
             %>
             <a href="index.jsp"><%=tutorName%>
             </a>
-
+            <a href="Estadisticas.jsp" class="icon">Stats de la App</a>
             <a href="Mensajes.jsp" class="icon">
                 <i class="fas fa-envelope"></i> Mensajerí­a
             </a>

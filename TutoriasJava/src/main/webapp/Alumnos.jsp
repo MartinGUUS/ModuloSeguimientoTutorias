@@ -1,6 +1,7 @@
 <%-- 
                         EL TUTOR VE TODOS LOS ALUMNOS, LOS TUTORADOS SOLO LO SUYO
     1. Expediente academico
+    3. Historial de tutorias (fecha, duración y temas tratados)
     4. Informes sobre el rendimiento del tutorado (estadisticas conforme a lo ideal y/o real)
     6. Estadisticas de desempeño academico del tutorado
     7. Tutores pueden buscar alumnos en especifico / SOLO TUTORES
