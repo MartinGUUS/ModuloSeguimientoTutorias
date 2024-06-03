@@ -9,9 +9,7 @@ import java.util.List;
 
 public class LoginDAO {
 
-public void loginServlet(){
 
-}
 
 
 

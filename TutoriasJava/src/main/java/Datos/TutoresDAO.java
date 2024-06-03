@@ -19,7 +19,7 @@ public class TutoresDAO {
     private static final String insertTutor = "INSERT INTO tutores (nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    public static List<Tutores> selectTutoresVarios() {
+    public List<Tutores> selectTutoresVarios() {
         List<Tutores> tutores = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
