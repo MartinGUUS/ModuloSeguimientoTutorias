@@ -59,8 +59,8 @@ public class svLogin extends HttpServlet {
                 }
 
                 if (!tu && !al) {
-                    System.out.println("no se encontro usuario");
-                    response.sendRedirect("index.jsp");
+                    request.setAttribute("errorMessage", "Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else if (tu && !al) {
                     System.out.println("vamos para tutores menu");
                     request.getSession().setAttribute("nameTutor", nombretutores);

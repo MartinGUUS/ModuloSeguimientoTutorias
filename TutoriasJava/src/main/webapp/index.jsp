@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Tutorias</title>
+
+    <script>
+        function clearInputs() {
+            document.getElementById('mail').value = '';
+            document.getElementById('contra').value = '';
+        }
+
+        function showAlert(message) {
+            alert(message);
+            clearInputs();
+        }
+    </script>
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -73,14 +86,26 @@
     <h1>Tutorias UV</h1>
     <form action="svLogin" method="POST">
         <label for="username">Correo</label>
-        <input type="text" id="username" name="mail" >
+        <input type="text" id="username" name="mail">
 
         <label for="password">Clave</label>
-        <input type="password" id="password" name="contra" >
+        <input type="password" id="password" name="contra">
 
         <button type="submit" name="action" value="login">Loguear</button>
         <button type="submit" name="action" value="register">Registrar</button>
     </form>
 </div>
+
+
+<%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+    if (errorMessage != null) {
+%>
+<script>
+    showAlert('<%= errorMessage %>');
+</script>
+<%
+    }
+%>
 </body>
 </html>
