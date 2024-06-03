@@ -1,23 +1,10 @@
-<%-- 
-                        EL TUTOR VE TODOS LOS ALUMNOS, LOS TUTORADOS SOLO LO SUYO
-    1. Expediente academico
-    3. Historial de tutorias (fecha, duración y temas tratados)
-    4. Informes sobre el rendimiento del tutorado (estadisticas conforme a lo ideal y/o real)
-    6. Estadisticas de desempeño academico del tutorado
-    7. Tutores pueden buscar alumnos en especifico / SOLO TUTORES
-Datos personales *
-Areas / Materias / Creditos - Tipo de inscripcion - Calificaion *
-Informe / Grafica de rendimiento 
-Historial de tutorias y agregar una nueva 
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lista de tutorados</title>
+        <title>Información del alumno</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <style>
             body {
@@ -63,16 +50,17 @@ Historial de tutorias y agregar una nueva
                 gap: 5px;
             }
             .navbardetalle {
-                overflow: hidden;
                 background-color: #333;
-                margin-bottom: 5px;
+                width: 260px;
+                height: 385px;
             }
             .navbardetalle a {
-                float: left;
                 display: block;
+                font-size: 25px;
+                font-weight: bold;
                 color: #f2f2f2;
                 text-align: center;
-                padding: 14px 16px;
+                padding: 30px 16px;
                 text-decoration: none;
             }
             .navbardetalle a:hover {
@@ -96,51 +84,14 @@ Historial de tutorias y agregar una nueva
                 box-sizing: border-box;
                 display: grid;
                 grid-template-columns: 1fr 2fr;
-                gap: 20px;
-            }
-            .grid-container .lista-alumnos, .detalle-alumnos {
-                flex: 1;
-                padding: 10px;
-            }
-            .lista-alumnos {
-                border-right: 1px solid #ccc;
-            }
-            .lista-alumnos ul {
-                list-style: none;
-                padding: 0;
-            }
-            .lista-alumnos li {
-                margin-bottom: 10px;
-            }
-            .lista-alumnos a {
-                color: #2575fc;
-                text-decoration: none;
-                font-weight: bold;
-            }
-            .lista-alumnos a:hover {
-                text-decoration: underline;
-            }
-            .grid-item {
-                background-color: #f1f1f1;
-                padding: 20px;
-                text-align: center;
-                border: 1px solid #ccc;
-                border-radius: 8px;
-                transition: transform 0.3s, background-color 0.3s;
-                cursor: pointer;
-                text-decoration: none;
-                color: #333;
-                font-size: 16px;
-            }
-            .grid-item:hover {
-                transform: scale(1.05);
-                background-color: #e0e0e0;
             }
             .details {
                 background-color: #f9f9f9;
                 padding: 20px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
+                height: 345px;
+                overflow-y: scroll;
             }
             .details h2 {
                 margin-top: 0;
@@ -158,28 +109,14 @@ Historial de tutorias y agregar una nueva
                 color: #555;
                 text-align: right;
             }
-            .RegistraOtra {
-                margin-top: 10px;
-                grid-column: 1 / span 2;
-                display: flex;
-                justify-content: end;
-            }
-            .RegistraOtra button {
-                padding: 5px 5px;
-                background-color: blue;
-                border: none;
-                border-radius: 10px;
-                color: white;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-            .RegistraOtra button:hover {
-                background-color: cadetblue;
-            }
         </style>
         <script>
-            function Detalles(nombre, matricula, correo, telefono, direccion, fechaNac, carrera, semestre, tutor) {
+            function showSection(sectionId, nombre, matricula, correo, telefono, direccion, fechaNac, carrera, semestre, tutor) {
+                var sections = document.getElementsByClassName('section');
+                for (var i = 0; i < sections.length; i++) {
+                    sections[i].style.display = 'none';
+                }
+                document.getElementById(sectionId).style.display = 'block';
                 document.getElementById('detailsImage').style.display = 'none';
                 document.getElementById('detailsText').style.display = 'block';
                 document.getElementById('Nombre').textContent = nombre;
@@ -191,13 +128,6 @@ Historial de tutorias y agregar una nueva
                 document.getElementById('Carrera').textContent = carrera;
                 document.getElementById('Semestre').textContent = semestre;
                 document.getElementById('Tutor').textContent = tutor;
-            }
-            function showSection(sectionId) {
-                var sections = document.getElementsByClassName('section');
-                for (var i = 0; i < sections.length; i++) {
-                    sections[i].style.display = 'none';
-                }
-                document.getElementById(sectionId).style.display = 'block';
             }
             function DetallesTutorias(fecha, asunto, duracion, temas) {
                 document.getElementById('fecha').innerText = fecha;
@@ -215,7 +145,7 @@ Historial de tutorias y agregar una nueva
     </head>
     <body>
         <div class="navbar">
-            <div class="logo">Lista y detalle de tutorados</div>
+            <div class="logo">Información del alumno</div>
             <div class="menu">
                 <a href="menuTutor.jsp">Inicio</a>
                 <a href="Mensajes.jsp" class="icon">
@@ -227,24 +157,17 @@ Historial de tutorias y agregar una nueva
 
         <div class="content">
             <div class="grid-container">
-                <div class="lista-alumnos">
-                    <ul>
-                        <li><a href="#" onclick="Detalles('Alberto Caballero Perez', 'S20004605', 'caballero@gmail.com', '229-1234', 'Coyol', '2001-11-03', 'Ingeniería Informática', '8vo', 'Diana')">Alberto Caballero</a></li>
-                        <li><a href="#" onclick="Detalles('Martin Gustavo', 'martin@gmail.com', '229-5678')">Martin Gustavo</a></li>
-                        <li><a href="#" onclick="Detalles('Yuliana Berumen Diaz', 'yuliana@gmail.com', '229-4321')">Yuliana Berumen</a></li>
-                    </ul>
+                <div class="navbardetalle">
+                    <a href="#" onclick="showSection('datos-personales', 'Alberto Caballero Perez', 'S20004605', 'caballero@gmail.com', '229-1234', 'Coyol', '2001-11-03', 'Ingeniería Informática', '8vo', 'Diana')">Datos personales</a>
+                    <a href="#" onclick="showSection('materias')">Materias</a>
+                    <a href="#" onclick="showSection('informe')">Informe</a>
+                    <a href="#" onclick="showSection('historial-tutorias')">Historial de tutorías</a>
                 </div>
                 <div class="details">
                     <div id="detailsImage">
-                        <img src="Images/UvLogo.png" alt="Selecciona una persona" width="100%" height="100%">
+                        <img src="Images/UvLogo.png" alt="Imagen de espera" width="100%" height="320px">
                     </div>
                     <div id="detailsText" style="display: none;">
-                        <div class="navbardetalle">
-                            <a href="#" onclick="showSection('datos-personales')">Datos personales</a>
-                            <a href="#" onclick="showSection('materias')">Materias</a>
-                            <a href="#" onclick="showSection('informe')">Informe</a>
-                            <a href="#" onclick="showSection('historial-tutorias')">Historial de tutorías</a>
-                        </div>
                         <div id="datos-personales" class="section">
                             <p><strong>Nombre:</strong> <span id="Nombre"></span></p>
                             <p><strong>Matricula:</strong> <span id="Matricula"></span></p>
@@ -355,9 +278,6 @@ Historial de tutorias y agregar una nueva
                         </div>
                         <div id="historial-tutorias" class="section">
                             <div id="lista-tutorias" class="lista">
-                                <div class="RegistraOtra">
-                                    <button onclick="window.location.href = 'Tutorias.jsp'">Registrar Otra</button>
-                                </div>
                                 <table border="2">
                                     <tr>
                                         <td>
@@ -418,9 +338,6 @@ Historial de tutorias y agregar una nueva
                             </div>
                         </div>
                     </div>
-                    <script>
-                        showSection('datos-personales');
-                    </script>
                 </div>
             </div>
         </div>

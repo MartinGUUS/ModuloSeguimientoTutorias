@@ -2,7 +2,7 @@ package Modelo;
 
 import java.io.Serializable;
 
-public class Materias_Alumnos implements Serializable {
+public class Materias_alumnos implements Serializable {
 
     private static int fkMaterias;
     private static String fkAlumnos;
@@ -10,10 +10,10 @@ public class Materias_Alumnos implements Serializable {
     private static int inscripcion;
     private static int calificacion;
 
-    public Materias_Alumnos() {
+    public Materias_alumnos() {
     }
 
-    public Materias_Alumnos(int fkMaterias, String fkAlumnos, int fkEstatus, int inscripcion, int calificacion) {
+    public Materias_alumnos(int fkMaterias, String fkAlumnos, int fkEstatus, int inscripcion, int calificacion) {
         this.fkMaterias = fkMaterias;
         this.fkAlumnos = fkAlumnos;
         this.fkEstatus = fkEstatus;
@@ -27,7 +27,7 @@ public class Materias_Alumnos implements Serializable {
     }
 
     public static void setFkMaterias(int fkMaterias) {
-        Materias_Alumnos.fkMaterias = fkMaterias;
+        Materias_alumnos.fkMaterias = fkMaterias;
     }
 
     public static String getFkAlumnos() {
@@ -35,7 +35,7 @@ public class Materias_Alumnos implements Serializable {
     }
 
     public static void setFkAlumnos(String fkAlumnos) {
-        Materias_Alumnos.fkAlumnos = fkAlumnos;
+        Materias_alumnos.fkAlumnos = fkAlumnos;
     }
 
     public static int getFkEstatus() {
@@ -43,7 +43,7 @@ public class Materias_Alumnos implements Serializable {
     }
 
     public static void setFkEstatus(int fkEstatus) {
-        Materias_Alumnos.fkEstatus = fkEstatus;
+        Materias_alumnos.fkEstatus = fkEstatus;
     }
 
     public static int getInscripcion() {
@@ -51,7 +51,7 @@ public class Materias_Alumnos implements Serializable {
     }
 
     public static void setInscripcion(int inscripcion) {
-        Materias_Alumnos.inscripcion = inscripcion;
+        Materias_alumnos.inscripcion = inscripcion;
     }
 
     public static int getCalificacion() {
@@ -59,6 +59,6 @@ public class Materias_Alumnos implements Serializable {
     }
 
     public static void setCalificacion(int calificacion) {
-        Materias_Alumnos.calificacion = calificacion;
+        Materias_alumnos.calificacion = calificacion;
     }
 }

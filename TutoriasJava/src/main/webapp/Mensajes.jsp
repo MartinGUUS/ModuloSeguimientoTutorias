@@ -233,10 +233,10 @@
                         <img src="Images/UvLogo.png" alt="Selecciona un mensaje" width="100%" height="100%">
                     </div>
                     <div id="detailsText" style="display: none;">
-                        <p><strong>De:</strong> <span id="de">Selecciona un mensaje para ver los detalles</span></p>
-                        <p><strong>Asunto:</strong> <span id="asunto">Selecciona un mensaje para ver los detalles</span></p>
-                        <p><strong>Fecha:</strong> <span id="fecha">Selecciona un mensaje para ver los detalles</span></p>
-                        <p><span id="msj">Selecciona un mensaje para ver los detalles</span></p>
+                        <p><strong>De:</strong> <span id="de"></span></p>
+                        <p><strong>Asunto:</strong> <span id="asunto"></span></p>
+                        <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+                        <p><span id="msj"></span></p>
                     </div>
                 </div>
             </div>
