@@ -94,7 +94,8 @@
                         int idTutor = tutor.getIdTutores();
                         String nombreCompleto = idTutor + ".- " + tutor.getNombre().toUpperCase();
                 %>
-                <option value="<%= idTutor %>"><%= nombreCompleto %></option>
+                <option value="<%= tutor.getIdTutores() %>"><%= tutor.getNombre().toUpperCase() + " " + tutor.getSegundoNombre().toUpperCase() + " " + tutor.getApPaterno().toUpperCase() + " " + tutor.getApMaterno().toUpperCase() %>
+                </option>
                 <% } %>
             </select> <br>
         </div>

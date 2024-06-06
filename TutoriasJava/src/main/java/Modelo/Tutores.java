@@ -5,17 +5,17 @@ import java.sql.Date;
 
 public class Tutores implements Serializable {
 
-    private static int idTutores;
-    private static String nombre;
-    private static String segundoNombre;
-    private static String apPaterno;
-    private static String apMaterno;
-    private static Date fechaNac;
-    private static String numero;
-    private static String correo;
-    private static String direccion;
-    private static String contra;
-    private static int fkEstatus;
+    private int idTutores;
+    private String nombre;
+    private String segundoNombre;
+    private String apPaterno;
+    private String apMaterno;
+    private Date fechaNac;
+    private String numero;
+    private String correo;
+    private String direccion;
+    private String contra;
+    private int fkEstatus;
 
     public Tutores() {
     }
@@ -47,93 +47,92 @@ public class Tutores implements Serializable {
         this.fkEstatus = fkEstatus;
     }
 
-    public static int getIdTutores() {
+
+    public int getIdTutores() {
         return idTutores;
     }
 
-    public static void setIdTutores(int idTutores) {
-        Tutores.idTutores = idTutores;
+    public void setIdTutores(int idTutores) {
+        this.idTutores = idTutores;
     }
 
-    public static String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public static void setNombre(String nombre) {
-        Tutores.nombre = nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public static String getSegundoNombre() {
+    public String getSegundoNombre() {
         return segundoNombre;
     }
 
-    public static void setSegundoNombre(String segundoNombre) {
-        Tutores.segundoNombre = segundoNombre;
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
     }
 
-    public static String getApPaterno() {
+    public String getApPaterno() {
         return apPaterno;
     }
 
-    public static void setApPaterno(String apPaterno) {
-        Tutores.apPaterno = apPaterno;
+    public void setApPaterno(String apPaterno) {
+        this.apPaterno = apPaterno;
     }
 
-    public static String getApMaterno() {
+    public String getApMaterno() {
         return apMaterno;
     }
 
-    public static void setApMaterno(String apMaterno) {
-        Tutores.apMaterno = apMaterno;
+    public void setApMaterno(String apMaterno) {
+        this.apMaterno = apMaterno;
     }
 
-    public static Date getFechaNac() {
+    public Date getFechaNac() {
         return fechaNac;
     }
 
-    public static void setFechaNac(Date fechaNac) {
-        Tutores.fechaNac = fechaNac;
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
-    public static String getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public static void setNumero(String numero) {
-        Tutores.numero = numero;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public static String getCorreo() {
+    public String getCorreo() {
         return correo;
     }
 
-    public static void setCorreo(String correo) {
-        Tutores.correo = correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public static String getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public static void setDireccion(String direccion) {
-        Tutores.direccion = direccion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public static String getContra() {
+    public String getContra() {
         return contra;
     }
 
-    public static void setContra(String contra) {
-        Tutores.contra = contra;
+    public void setContra(String contra) {
+        this.contra = contra;
     }
 
-    public static int getFkEstatus() {
+    public int getFkEstatus() {
         return fkEstatus;
     }
 
-    public static void setFkEstatus(int fkEstatus) {
-        Tutores.fkEstatus = fkEstatus;
+    public void setFkEstatus(int fkEstatus) {
+        this.fkEstatus = fkEstatus;
     }
-
-
 }

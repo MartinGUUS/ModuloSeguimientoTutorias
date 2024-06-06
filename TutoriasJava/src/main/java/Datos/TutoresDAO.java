@@ -1,18 +1,13 @@
 package Datos;
 
-import Modelo.Alumnos;
 import Modelo.Tutores;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TutoresDAO {
-
-
     private static final String SQLSelectTutores = "SELECT * FROM tutores";
-
     private static final String insertTutor = "INSERT INTO tutores (nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -21,24 +16,25 @@ public class TutoresDAO {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+
         try {
-            Tutores tu = null;
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQLSelectTutores);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int idTutor = rs.getInt("idTutores");
+                int idTutor = rs.getInt("idtutores");
                 String nombre = rs.getString("nombre");
-                String segundoNombre = rs.getString("segundoNombre");
-                String apPaterno = rs.getString("apPaterno");
-                String apMaterno = rs.getString("apMaterno");
-                Date fechaNac = rs.getDate("fechaNac");
+                String segundoNombre = rs.getString("segundonombre");
+                String apPaterno = rs.getString("appaterno");
+                String apMaterno = rs.getString("apmaterno");
+                Date fechaNac = rs.getDate("fechanac");
                 String numero = rs.getString("numero");
                 String correo = rs.getString("correo");
                 String direccion = rs.getString("direccion");
                 String contra = rs.getString("contra");
-
                 int fkEstatus = rs.getInt("fkEstatus");
+
+                // Crear una nueva instancia de Tutores en cada iteración
                 Tutores tut = new Tutores(idTutor, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus);
                 tutores.add(tut);
             }
@@ -51,8 +47,6 @@ public class TutoresDAO {
         }
         return tutores;
     }
-
-
 
     public void insertTutor(Tutores tutor) {
         Connection conn = null;
@@ -79,6 +73,4 @@ public class TutoresDAO {
             Conexion.close(conn);
         }
     }
-
-
 }

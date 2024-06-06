@@ -157,7 +157,7 @@
             }
         </style>
         <script>
-            function showMessageDetails(de, asunto, fecha, msj) {
+            function showMessageDetails(de, asunto, fecharf, msj) {
                 document.getElementById('de').innerText = de;
                 document.getElementById('asunto').innerText = asunto;
                 document.getElementById('fecha').innerText = fecha;

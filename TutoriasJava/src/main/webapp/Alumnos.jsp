@@ -229,7 +229,7 @@ Historial de tutorias y agregar una nueva
             <div class="grid-container">
                 <div class="lista-alumnos">
                     <ul>
-                        <li><a href="#" onclick="Detalles('Alberto Caballero Perez', 'S20004605', 'caballero@gmail.com', '229-1234', 'Coyol', '2001-11-03', 'Ingeniería Informática', '8vo', 'Diana')">Alberto Caballero</a></li>
+                        <li><a href="#" onclick="Detalles('Alberto Caballero Perez', 'S20004605', 'caballero@gmail.com', '229-1234', 'Coyol', '2001-11-03', 'Ingeniería Informática', '8vo', 'Dianaa')">Alberto Caballeroa</a></li>
                         <li><a href="#" onclick="Detalles('Martin Gustavo', 'martin@gmail.com', '229-5678')">Martin Gustavo</a></li>
                         <li><a href="#" onclick="Detalles('Yuliana Berumen Diaz', 'yuliana@gmail.com', '229-4321')">Yuliana Berumen</a></li>
                     </ul>
