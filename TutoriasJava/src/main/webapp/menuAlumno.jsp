@@ -24,8 +24,10 @@
         <div class="menu">
             <%
                 String nombreAl = (String) request.getSession().getAttribute("nombreAlumno");
+                String apellido = (String) request.getSession().getAttribute("apAlumno");
+
             %>
-            <a href="index.jsp"><%= nombreAl %>
+            <a href="index.jsp"><%= nombreAl + " " + apellido%>
             </a>
             <a href="Estadisticas.jsp" class="icon">Stats de la App</a>
             <a href="Mensajes.jsp" class="icon">

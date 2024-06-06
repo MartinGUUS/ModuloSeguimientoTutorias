@@ -10,11 +10,8 @@ import java.util.List;
 
 public class TutoresDAO {
 
-    private static Connection conn = null;
-    private static PreparedStatement ps = null;
-    private static ResultSet rs = null;
 
-    private static final String SQLSelectTutores = "SELECT * FROM tutores ";
+    private static final String SQLSelectTutores = "SELECT * FROM tutores";
 
     private static final String insertTutor = "INSERT INTO tutores (nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -58,6 +55,9 @@ public class TutoresDAO {
 
 
     public void insertTutor(Tutores tutor) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(insertTutor);

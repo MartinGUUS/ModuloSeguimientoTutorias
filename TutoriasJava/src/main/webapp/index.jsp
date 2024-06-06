@@ -86,10 +86,10 @@
     <h1>Tutorias UV</h1>
     <form action="svLogin" method="POST">
         <label for="username">Correo</label>
-        <input type="text" id="username" name="mail">
+        <input type="text" id="username" name="mail" >
 
         <label for="password">Clave</label>
-        <input type="password" id="password" name="contra">
+        <input type="password" id="password" name="contra" >
 
         <button type="submit" name="action" value="login">Loguear</button>
         <button type="submit" name="action" value="register">Registrar</button>

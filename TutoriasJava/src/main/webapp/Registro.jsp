@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Usuarios</title>
     <link rel="stylesheet" href="Registro.css">
-
     <script>
         function toggleActions() {
             var alumnoCheckbox = document.getElementById('alumno');
@@ -88,28 +87,21 @@
 
             <label for="tutoralu">Tutor: </label>
             <select id="tutoralu" name="tutoralu">
-
                 <%
                     TutoresDAO tutoresDAO = new TutoresDAO();
-                    List<Tutores> as = tutoresDAO.selectTutoresVarios();
-                    String tuto = " ";
-                    for (int i = 0; i < as.size(); i++) {
-                        String idTutor = String.valueOf(as.get(i).getIdTutores());
-                        tuto = (as.get(i).getIdTutores() + ".- " + as.get(i).getNombre().toUpperCase() + " " + as.get(i).getSegundoNombre().toUpperCase() + " " + as.get(i).getApPaterno().toUpperCase() + " " + as.get(i).getApMaterno().toUpperCase());
+                    List<Tutores> tutoresList = tutoresDAO.selectTutoresVarios();
+                    for (Tutores tutor : tutoresList) {
+                        int idTutor = tutor.getIdTutores();
+                        String nombreCompleto = idTutor + ".- " + tutor.getNombre().toUpperCase();
                 %>
-                <option value="<%= idTutor %>" ><%=tuto%>
-                </option>
-                <% }%>
-
+                <option value="<%= idTutor %>"><%= nombreCompleto %></option>
+                <% } %>
             </select> <br>
         </div>
 
-        <div id="tutor-actions" class="actions">
-
-        </div>
+        <div id="tutor-actions" class="actions"></div>
 
         <br><br>
-
         <input type="submit" value="Registrar">
     </form>
 
@@ -117,5 +109,7 @@
         <input type="submit" value="Volver">
     </form>
 </div>
+
+
 </body>
 </html>

@@ -22,19 +22,16 @@ public class svLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String mail = request.getParameter("mail");
-        String contra = request.getParameter("contra");
+        String mail = request.getParameter("mail").trim();
+        String contra = request.getParameter("contra").trim();
         String accion = request.getParameter("action");
-        System.out.println("accion = " + accion);
-        System.out.println("mail = " + mail);
-        System.out.println("contra = " + contra);
 
 
         switch (accion) {
             case "login":
                 System.out.println("\n\n\n");
                 boolean al = false, tu = false;
-                String nombrealumnos = null, nombretutores = null, matricula = null;
+                String nombrealumnos = null, nombretutores = null, matricula = null, apTutor = null, apAlumno = null;
                 int idTutores = 0;
                 AlumnosDAO alumnosDAO = new AlumnosDAO();
                 TutoresDAO tutoresDAO = new TutoresDAO();
@@ -44,31 +41,34 @@ public class svLogin extends HttpServlet {
                     if (alumnos.get(i).getContra().equals(contra) && alumnos.get(i).getCorreo().equals(mail)) {
                         al = true;
                         nombrealumnos = alumnos.get(i).getNombre();
+                        apAlumno = alumnos.get(i).getApPaterno();
                         matricula = alumnos.get(i).getMatricula();
-                        System.out.println("Se encontro alumno?  " + al);
+                        break;
                     }
                 }
                 for (int i = 0; i < tutores.size(); i++) {
                     if (tutores.get(i).getContra().equals(contra) && tutores.get(i).getCorreo().equals(mail)) {
                         tu = true;
                         nombretutores = tutores.get(i).getNombre();
+                        apTutor = tutores.get(i).getApPaterno();
                         idTutores = tutores.get(i).getIdTutores();
-                        System.out.println("Se encontro tutor?  " + al);
-
+                        break;
                     }
                 }
+
+
 
                 if (!tu && !al) {
                     request.setAttribute("errorMessage", "Credenciales incorrectas. Por favor, inténtalo de nuevo.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else if (tu && !al) {
-                    System.out.println("vamos para tutores menu");
                     request.getSession().setAttribute("nameTutor", nombretutores);
+                    request.getSession().setAttribute("apTutor", apTutor);
                     request.getSession().setAttribute("idTutorLogin", idTutores);
                     response.sendRedirect("menuTutor.jsp");
                 } else if (!tu && al) {
-                    System.out.println("vamos para Alumnos menu");
                     request.getSession().setAttribute("nombreAlumno", nombrealumnos);
+                    request.getSession().setAttribute("apAlumno", apAlumno);
                     request.getSession().setAttribute("matriculaAlumno", matricula);
                     response.sendRedirect("menuAlumno.jsp");
                 }

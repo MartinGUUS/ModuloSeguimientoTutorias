@@ -25,8 +25,9 @@
 
             <%
                 String tutorName = (String) request.getSession().getAttribute("nameTutor");
+                String apellido = (String) request.getSession().getAttribute("apTutor");
             %>
-            <a href="index.jsp"><%=tutorName%>
+            <a href="index.jsp"><%=tutorName + " " + apellido%>
             </a>
             <a href="Estadisticas.jsp" class="icon">Stats de la App</a>
             <a href="Mensajes.jsp" class="icon">
