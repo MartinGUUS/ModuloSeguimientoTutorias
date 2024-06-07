@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TutoresDAO {
+
     private static final String SQLSelectTutores = "SELECT * FROM tutores";
-    private static final String insertTutor = "INSERT INTO tutores (nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    private static final String insertTutor = "INSERT INTO tutores (nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String BuscarfkTutor = "SELECT idtutores FROM tutores WHERE correo = ?";
 
     public List<Tutores> selectTutoresVarios() {
         List<Tutores> tutores = new ArrayList<>();
@@ -72,5 +75,28 @@ public class TutoresDAO {
             Conexion.close(ps);
             Conexion.close(conn);
         }
+    }
+
+    public int getfkTutor(String correo) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int fkTutor = -1;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(BuscarfkTutor);
+            ps.setString(1, correo);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                fkTutor = rs.getInt("idtutores");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return fkTutor;
     }
 }

@@ -30,7 +30,7 @@
             <a href="index.jsp"><%=tutorName + " " + apellido%>
             </a>
             <a href="Estadisticas.jsp" class="icon">Stats de la App</a>
-            <a href="Mensajes.jsp" class="icon">
+            <a href="MensajesTutores.jsp" class="icon">
                 <i class="fas fa-envelope"></i> Mensajerí­a
             </a>
             <button type="submit" name="action" value="cerrarSesion">Cerrar sesión</button>

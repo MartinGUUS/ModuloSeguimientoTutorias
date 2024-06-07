@@ -8,13 +8,12 @@ import java.util.List;
 
 public class AlumnosDAO {
 
-
-    private static final String SQLinsertAlumno = "INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String SQLinsertAlumno = "INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SQLSelectVariosAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ?";
     private static final String SQLSelectAlumnos = "SELECT * FROM alumnos ";
     private static final String SQLSelectUnAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ? AND fkAlumno = ?";
-
+    private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
 
     public static List<Alumnos> selectAlumnosUno(int fkTutor, String fkAlumno) {
         List<Alumnos> alumnos = new ArrayList<>();
@@ -96,7 +95,6 @@ public class AlumnosDAO {
         return alumnos;
     }
 
-
     public static Alumnos selectAlumnoPorMatricula(String matricula) {
         Alumnos alumno = null;
         Connection conn = null;
@@ -173,7 +171,6 @@ public class AlumnosDAO {
         return alumnos;
     }
 
-
     public void insertAlumnos(Alumnos al) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -204,5 +201,26 @@ public class AlumnosDAO {
         }
     }
 
-
+    public String getfkAlumno(String correo) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String fkAlumno = null;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(BuscarfkAlumno);
+            ps.setString(1, correo);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                fkAlumno = rs.getString("matricula");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return fkAlumno;
+    }
 }

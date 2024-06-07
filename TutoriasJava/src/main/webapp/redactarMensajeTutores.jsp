@@ -105,18 +105,18 @@
             <div class="logo">Redactar mensajes</div>
             <div class="menu">
                 <%
-                    String nombreAl = (String) request.getSession().getAttribute("nombreAlumno");
+                    String nombreTu = (String) request.getSession().getAttribute("nameTutor");
                 %>
-                <a href=""><%= nombreAl%>
+                <a href=""><%= nombreTu%>
                 </a>
-                <a href="menuAlumno.jsp">Inicio</a>
+                <a href="menuTutor.jsp">Inicio</a>
             </div>
         </div>
 
         <div class="msj-container">
-            <form action="svNuevoMensaje" method="post">
-                <label id="tutor">Para:</label>
-                <input type="text" name="tutor" value="juan@example.com" readonly>
+            <form action="svNuevoMensajeTutor" method="post">
+                <label id="alumno">Para:</label>
+                <input type="text" name="alumno" placeholder="tutor@uv.mx...">
 
                 <label id="asunto">Asunto:</label>
                 <input type="text" name="asunto" placeholder="Tutorias...">
