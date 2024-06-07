@@ -14,6 +14,44 @@ public class TutoresDAO {
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String BuscarfkTutor = "SELECT idtutores FROM tutores WHERE correo = ?";
 
+    private static final String SQLSelectTutorById = "SELECT * FROM tutores WHERE idtutores = ?";
+
+    public Tutores selectTutorById(int idTutor) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Tutores tutor = null;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SQLSelectTutorById);
+            ps.setInt(1, idTutor);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String segundoNombre = rs.getString("segundonombre");
+                String apPaterno = rs.getString("appaterno");
+                String apMaterno = rs.getString("apmaterno");
+                Date fechaNac = rs.getDate("fechanac");
+                String numero = rs.getString("numero");
+                String correo = rs.getString("correo");
+                String direccion = rs.getString("direccion");
+                String contra = rs.getString("contra");
+                int fkEstatus = rs.getInt("fkEstatus");
+
+                tutor = new Tutores(idTutor, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, fkEstatus);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return tutor;
+    }
+
     public List<Tutores> selectTutoresVarios() {
         List<Tutores> tutores = new ArrayList<>();
         Connection conn = null;

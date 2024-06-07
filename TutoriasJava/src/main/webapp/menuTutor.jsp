@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Tutores</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="menuTutor.css"> <!-- Vincula el archivo CSS externo -->
+    <link rel="stylesheet" href="menuTutor.css">
 
     <%
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -27,11 +27,9 @@
                 String tutorName = (String) request.getSession().getAttribute("nameTutor");
                 String apellido = (String) request.getSession().getAttribute("apTutor");
             %>
-            <a href="index.jsp"><%=tutorName + " " + apellido%>
-            </a>
-            <a href="Estadisticas.jsp" class="icon">Stats de la App</a>
+            <a href="informacionTutor.jsp"><%=tutorName + " " + apellido%></a>
             <a href="MensajesTutores.jsp" class="icon">
-                <i class="fas fa-envelope"></i> Mensajerí­a
+                <i class="fas fa-envelope"></i> Mensajería
             </a>
             <button type="submit" name="action" value="cerrarSesion">Cerrar sesión</button>
         </div>
