@@ -177,10 +177,7 @@
 <div class="navbar">
     <div class="logo">Tutorías UV</div>
     <div class="menu">
-        <a href="listaAlumnos.jsp"><i class="fas fa-user-graduate"></i> Mis Tutorados</a>
-        <a href="listaTutorias.jsp"><i class="fas fa-calendar-alt"></i> Tutorias</a>
-        <a href="solicitudAlumno.jsp"><i class="fas fa-edit"></i> Solicitudes</a>
-        <a href="index.jsp"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        <a href="menuTutor.jsp">Inicio</a>
     </div>
 </div>
 <div class="content">
@@ -232,7 +229,7 @@
                 var tutorias = JSON.parse(xhr.responseText);
                 var tutoriaList = document.getElementById("tutoria-list");
                 tutoriaList.innerHTML = ""; // Limpiar lista
-                tutorias.forEach(function(tutoria) {
+                tutorias.forEach(function (tutoria) {
                     var listItem = document.createElement("li");
                     listItem.textContent = tutoria.fecha + " - " + tutoria.contexto + " (" + tutoria.duracion + " minutos)";
                     tutoriaList.appendChild(listItem);

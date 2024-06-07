@@ -51,7 +51,7 @@ public class svLogin extends HttpServlet {
                         tu = true;
                         nombretutores = tutores.get(i).getNombre();
                         apTutor = tutores.get(i).getApPaterno();
-                        idTutores = tutores.get(i).getIdtutores();
+                        idTutores = tutores.get(i).getIdTutores();
                         break;
                     }
                 }

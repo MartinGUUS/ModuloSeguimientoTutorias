@@ -1,16 +1,12 @@
 package Modelo;
 
-import java.io.Serializable;
+public class Notas {
+    private int idNotas;
+    private int fkTutor;
+    private String fkAlumno;
+    private String notas;
 
-public class Notas implements Serializable {
-
-    private static int idNotas;
-    private static int fkTutor;
-    private static String fkAlumno;
-    private static String notas;
-
-    public Notas() {
-    }
+    public Notas() {}
 
     public Notas(int idNotas, int fkTutor, String fkAlumno, String notas) {
         this.idNotas = idNotas;
@@ -25,35 +21,35 @@ public class Notas implements Serializable {
         this.notas = notas;
     }
 
-    public static int getIdNotas() {
+    public int getIdNotas() {
         return idNotas;
     }
 
-    public static void setIdNotas(int idNotas) {
-        Notas.idNotas = idNotas;
+    public void setIdNotas(int idNotas) {
+        this.idNotas = idNotas;
     }
 
-    public static int getFkTutor() {
+    public int getFkTutor() {
         return fkTutor;
     }
 
-    public static void setFkTutor(int fkTutor) {
-        Notas.fkTutor = fkTutor;
+    public void setFkTutor(int fkTutor) {
+        this.fkTutor = fkTutor;
     }
 
-    public static String getFkAlumno() {
+    public String getFkAlumno() {
         return fkAlumno;
     }
 
-    public static void setFkAlumno(String fkAlumno) {
-        Notas.fkAlumno = fkAlumno;
+    public void setFkAlumno(String fkAlumno) {
+        this.fkAlumno = fkAlumno;
     }
 
-    public static String getNotas() {
+    public String getNotas() {
         return notas;
     }
 
-    public static void setNotas(String notas) {
-        Notas.notas = notas;
+    public void setNotas(String notas) {
+        this.notas = notas;
     }
 }

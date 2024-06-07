@@ -8,59 +8,41 @@ import java.util.List;
 
 public class NotasDAO {
 
-    private static Connection conn = null;
-    private static PreparedStatement ps = null;
-    private static ResultSet rs = null;
-
-
-    private static final String SQLInsertNota = "INSERT INTO notas (fkTutor, fkAlumno, notas) " +
-            "VALUES (?, ?, ?);";
-
-    private static final String SQLSelectNotasPorAlumno = "SELECT * FROM notas WHERE fkAlumno = ?";
-
-
-    public static List<Notas> selectNotasPorAlumno(String fkAlumno) {
-        List<Notas> notaList = null;
-        try {
-            Notas nota = null;
-            notaList = new ArrayList<>();
-            conn = Conexion.getConnection();
-            ps = conn.prepareStatement(SQLSelectNotasPorAlumno);
-            ps.setString(1, fkAlumno);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                int idNotas = rs.getInt("idNotas");
-                int fkTutor = rs.getInt("fkTutor");
-                String notasTexto = rs.getString("notas");
-                nota = new Notas(idNotas, fkTutor, fkAlumno, notasTexto);
-                notaList.add(nota);
+    public static List<Notas> selectNotasPorAlumno(String matricula) {
+        List<Notas> notasList = new ArrayList<>();
+        String sql = "SELECT * FROM notas WHERE fkAlumno = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, matricula);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Notas nota = new Notas(
+                            rs.getInt("idNotas"),
+                            rs.getInt("fkTutor"),
+                            rs.getString("fkAlumno"),
+                            rs.getString("notas")
+                    );
+                    notasList.add(nota);
+                }
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            Conexion.close(rs);
-            Conexion.close(ps);
-            Conexion.close(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return notaList;
+        return notasList;
     }
 
-
-    public void insertNota(Notas nota) {
-        try {
-            conn = Conexion.getConnection();
-            ps = conn.prepareStatement(SQLInsertNota);
+    public static boolean insertNota(Notas nota) {
+        String sql = "INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (?, ?, ?)";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, nota.getFkTutor());
             ps.setString(2, nota.getFkAlumno());
             ps.setString(3, nota.getNotas());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } finally {
-            Conexion.close(ps);
-            Conexion.close(conn);
+            int rowsInserted = ps.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
-
-
 }

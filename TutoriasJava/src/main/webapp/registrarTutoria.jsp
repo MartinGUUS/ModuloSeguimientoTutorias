@@ -94,7 +94,27 @@
         .tuto-cont button:hover {
             background-color: #6a11cb;
         }
+        .tuto-cont .btn-cancelar {
+            background: #ff4b5c;
+        }
+        .tuto-cont .btn-cancelar:hover {
+            background: #ff1e3c;
+        }
     </style>
+    <script>
+        function irAtras() {
+            window.location.href = 'Tutorias.jsp';
+        }
+        function limpiarCampos() {
+            document.getElementById('fecha').value = '';
+            document.getElementById('contexto').value = '';
+            document.getElementById('duracion').value = '';
+        }
+        function regresarYLimpiar() {
+            limpiarCampos();
+            irAtras();
+        }
+    </script>
 </head>
 <body>
 <div class="navbar">
@@ -102,9 +122,7 @@
         Sistema de Tutorías
     </div>
     <div class="menu">
-        <a href="inicio.jsp">Inicio</a>
-        <a href="tutorias.jsp">Tutorías</a>
-        <a href="logout.jsp">Cerrar sesión</a>
+        <a href="menuTutor.jsp">Inicio</a>
     </div>
 </div>
 <div class="tuto-cont">
@@ -122,6 +140,7 @@
         <label for="duracion">Duración (minutos)</label>
         <input type="number" id="duracion" name="duracion" required>
         <button type="submit">Registrar</button>
+        <button type="button" class="btn-cancelar" onclick="regresarYLimpiar()">Cancelar</button>
     </form>
 </div>
 </body>
