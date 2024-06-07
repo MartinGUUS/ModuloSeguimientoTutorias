@@ -155,6 +155,23 @@
             .details h2 {
                 margin-top: 0;
             }
+            .clasealerta {
+                display: none;
+                background-color: green;
+                color: white;
+                padding: 20px;
+                margin: 20px;
+                border-radius: 5px;
+                text-align: center;
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 350px;
+            }
+            .clasealerta.error {
+                background-color: red;
+            }
         </style>
         <script>
             function showMessageDetails(de, asunto, fecharf, msj) {
@@ -165,6 +182,25 @@
                 document.getElementById('detailsImage').style.display = 'none';
                 document.getElementById('detailsText').style.display = 'block';
             }
+
+            window.onload = function () {
+                const url = new URLSearchParams(window.location.search);
+                const status = url.get('status');
+                if (status) {
+                    const alerta = document.getElementById('alerta');
+                    if (status === 'success') {
+                        alerta.textContent = 'Mensaje enviado exitosamente.';
+                        alerta.classList.add('success');
+                    } else if (status === 'error') {
+                        alerta.textContent = 'Error al enviar el mensaje.';
+                        alerta.classList.add('error');
+                    }
+                    alerta.style.display = 'block';
+                    setTimeout(() => {
+                        alerta.style.display = 'none';
+                    }, 3000);
+                }
+            };
         </script>
     </head>
     <body>
@@ -176,11 +212,12 @@
                 %>
                 <a href=""><%= nombreAl%>
                 </a>
-                <a href="menu.jsp">Inicio</a>
+                <a href="menuAlumno.jsp">Inicio</a>
             </div>
         </div>
 
         <div class="content">
+            <div id="alerta" class="clasealerta"></div>
             <div class="grid-container">
                 <div class="button-container">
                     <button onclick="window.location.href = 'redactarMensaje.jsp'">Nuevo Mensaje</button>

@@ -112,7 +112,7 @@
                 <a href="menuAlumno.jsp">Inicio</a>
             </div>
         </div>
-
+                
         <div class="msj-container">
             <form action="svNuevoMensaje" method="post">
                 <label id="tutor">Para:</label>
@@ -123,7 +123,7 @@
 
                 <label id="msj">Mensaje:</label>
                 <textarea name="msj" rows="10" placeholder="Escribe tu mensaje..."></textarea>
-
+                
                 <button type="submit">Enviar Mensaje</button>
             </form>
         </div>

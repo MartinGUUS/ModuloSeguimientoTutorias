@@ -20,21 +20,21 @@ public class svNuevoMensaje extends HttpServlet {
         String asunto = request.getParameter("asunto");
         String mensaje = request.getParameter("msj");
         String alumno = (String) request.getSession().getAttribute("matriculaAlumno");
-        
+
         Date fecha = new Date();
-        
+
         TutoresDAO tutoresDAO = new TutoresDAO();
         int fkTutor = tutoresDAO.getfkTutor(correotutor);
-        
+
         if (fkTutor != -1 && alumno != null) {
             Mensajes mensajeBean = new Mensajes(mensaje, asunto, fkTutor, alumno, fecha);
-            
+
             MensajesDAO msj = new MensajesDAO();
             msj.insertMensaje(mensajeBean);
-            
-            response.sendRedirect("mensajeEnviado.jsp");
+
+            response.sendRedirect("Mensajes.jsp?status=success");
         } else {
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("Mensajes.jsp?status=error");
         }
     }
 }
