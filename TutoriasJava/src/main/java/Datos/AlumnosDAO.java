@@ -57,7 +57,7 @@ public class AlumnosDAO {
         return alumnos;
     }
 
-    public static List<Alumnos> selectAlumnosVarios(int fkTutor) {
+    public static List<Alumnos> selectAlumnosVariosPorTutor(int fkTutor) {
         List<Alumnos> alumnos = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
@@ -95,6 +95,45 @@ public class AlumnosDAO {
         }
         return alumnos;
     }
+
+
+    public static Alumnos selectAlumnoPorMatricula(String matricula) {
+        Alumnos alumno = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String SQLSelectAlumnoPorMatricula = "SELECT * FROM alumnos WHERE matricula = ?";
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SQLSelectAlumnoPorMatricula);
+            ps.setString(1, matricula);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String segundoNombre = rs.getString("segundoNombre");
+                String apPaterno = rs.getString("apPaterno");
+                String apMaterno = rs.getString("apMaterno");
+                Date fechaNac = rs.getDate("fechaNac");
+                String numero = rs.getString("numero");
+                String correo = rs.getString("correo");
+                String direccion = rs.getString("direccion");
+                String contra = rs.getString("contra");
+                String carrera = rs.getString("carrera");
+                int semestre = rs.getInt("semestre");
+                int fkTutor = rs.getInt("fkTutor");
+                int fkEstatus = rs.getInt("fkEstatus");
+                alumno = new Alumnos(matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return alumno;
+    }
+
 
     public static List<Alumnos> selectAlumnosVarios() {
         List<Alumnos> alumnos = new ArrayList<>();
