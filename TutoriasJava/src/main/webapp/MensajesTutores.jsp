@@ -166,12 +166,7 @@
         <div class="navbar">
             <div class="logo">Bandeja de Entrada</div>
             <div class="menu">
-                <%
-                    String nombreTu = (String) request.getSession().getAttribute("nameTutor");
-                %>
-                <a href=""><%= nombreTu%>
-                </a>
-                <a href="menu.jsp">Inicio</a>
+                <a href="menuTutor.jsp">Inicio</a>
             </div>
         </div>
 

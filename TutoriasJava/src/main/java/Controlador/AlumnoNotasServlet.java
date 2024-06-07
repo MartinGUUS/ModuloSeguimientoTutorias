@@ -25,7 +25,7 @@ public class AlumnoNotasServlet extends HttpServlet {
             if (notas != null && !notas.isEmpty()) {
                 json = new Gson().toJson(notas);
             } else {
-                json = "[]"; // Devuelve un array vacío si no hay notas
+                json = "[]";
             }
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

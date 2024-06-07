@@ -100,14 +100,13 @@ public class svRegistro extends HttpServlet {
                 }
 
                 if (error.length() > 0) {
-                    response.getWriter().write("<script>alert('" + error.toString().replace("\n", "\\n") + "');</script>");
+                    request.getSession().setAttribute("registroError", error.toString());
+                    request.getSession().setAttribute("datosFormulario", request.getParameterMap());
                     response.sendRedirect("Registro.jsp");
                 } else {
                     Alumnos alumnoModelo = new Alumnos(matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNacimiento, telefono, correo, direccion, contra, carrera, semestre, tutor, 1);
                     alumnoDAO.insertAlumnos(alumnoModelo);
-                    System.out.println("Alumno insertado");
                     response.sendRedirect("index.jsp");
-
                 }
                 break;
 
@@ -142,12 +141,12 @@ public class svRegistro extends HttpServlet {
                 }
 
                 if (error.length() > 0) {
-                    response.getWriter().write("<script>alert('" + error.toString().replace("\n", "\\n") + "');</script>");
+                    request.getSession().setAttribute("registroError", error.toString());
+                    request.getSession().setAttribute("datosFormulario", request.getParameterMap());
                     response.sendRedirect("Registro.jsp");
                 } else {
                     Tutores tutorModelo = new Tutores(nombre, segundoNombre, apPaterno, apMaterno, fechaNacimiento, telefono, correo, direccion, contra, 1);
                     tutoresDAO.insertTutor(tutorModelo);
-                    System.out.println("Tutor insertado");
                     response.sendRedirect("index.jsp");
                 }
                 break;

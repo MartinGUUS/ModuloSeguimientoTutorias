@@ -1,4 +1,4 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Modelo.Alumnos" %>
 <%@ page import="Datos.AlumnosDAO" %>
@@ -192,7 +192,7 @@
             document.getElementById(sectionId).style.display = "block";
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             showSection('datos-notas');
         });
     </script>
@@ -237,8 +237,9 @@
                     <h1>Notas</h1>
                 </div>
                 <div id="datos-notas" class="section">
-                    <ul id="nota-list"></ul>
                     <a id="nuevaNotaBtn" href="#">Agregar nueva nota</a>
+                    <ul id="nota-list"></ul>
+
                 </div>
             </div>
         </div>

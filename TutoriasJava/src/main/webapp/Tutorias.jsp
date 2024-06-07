@@ -212,8 +212,8 @@
                     <a href="#" onclick="showSection('datos-tutorias')">Tutorías</a>
                 </div>
                 <div id="datos-tutorias" class="section">
-                    <ul id="tutoria-list"></ul>
                     <a id="nuevaTutoriaBtn" href="#">Registrar nueva tutoría</a>
+                    <ul id="tutoria-list"></ul>
                 </div>
             </div>
         </div>
