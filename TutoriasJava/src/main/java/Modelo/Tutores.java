@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Tutores implements Serializable {
 
-    private static int idTutores;
+    private static int idtutores;
     private static String nombre;
     private static String segundoNombre;
     private static String apPaterno;
@@ -20,8 +20,8 @@ public class Tutores implements Serializable {
     public Tutores() {
     }
 
-    public Tutores(int idTutores, String nombre, String segundoNombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String contra, int fkEstatus) {
-        this.idTutores = idTutores;
+    public Tutores(int idtutores, String nombre, String segundoNombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String contra, int fkEstatus) {
+        this.idtutores = idtutores;
         this.nombre = nombre;
         this.segundoNombre = segundoNombre;
         this.apPaterno = apPaterno;
@@ -47,12 +47,12 @@ public class Tutores implements Serializable {
         this.fkEstatus = fkEstatus;
     }
 
-    public static int getIdTutores() {
-        return idTutores;
+    public static int getIdtutores() {
+        return idtutores;
     }
 
-    public static void setIdTutores(int idTutores) {
-        Tutores.idTutores = idTutores;
+    public static void setIdTutores(int idtutores) {
+        Tutores.idtutores = idtutores;
     }
 
     public static String getNombre() {

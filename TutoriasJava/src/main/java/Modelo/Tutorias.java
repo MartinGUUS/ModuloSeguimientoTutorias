@@ -4,19 +4,18 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Tutorias implements Serializable {
-    private static int idTutorias;
-    private static Date fecha;
-    private static String contexto;
-    private static int duracion;
-    private static String fkAlumno;
-    private static int fkTutor;
-    private static int fkEstatus;
+    private int idTutorias;
+    private Date fecha;
+    private String contexto;
+    private int duracion;
+    private String fkAlumno;
+    private int fkTutor;
+    private int fkEstatus;
 
-    public Tutorias() {
 
-    }
+    public Tutorias() {}
 
-    public Tutorias(int idTutorias, Date fecha, String contexto, int duracion, String fkAlumno, int fkTutor, int fkEstatus) {
+    public Tutorias(int idTutorias, String fkAlumno, Date fecha, String contexto, int duracion, int fkTutor, int fkEstatus) {
         this.idTutorias = idTutorias;
         this.fecha = fecha;
         this.contexto = contexto;
@@ -26,68 +25,71 @@ public class Tutorias implements Serializable {
         this.fkEstatus = fkEstatus;
     }
 
-    public Tutorias(Date fecha, String contexto, int duracion, String fkAlumno, int fkTutor, int fkEstatus) {
+    public Tutorias(String fkAlumno, Date fecha, String contexto, int duracion, int fkTutor) {
         this.fecha = fecha;
         this.contexto = contexto;
         this.duracion = duracion;
         this.fkAlumno = fkAlumno;
         this.fkTutor = fkTutor;
-        this.fkEstatus = fkEstatus;
     }
 
-    public static int getIdTutorias() {
+    // Getters y Setters para todos los campos
+
+
+
+    public int getIdTutorias() {
         return idTutorias;
     }
 
-    public static void setIdTutorias(int idTutorias) {
-        Tutorias.idTutorias = idTutorias;
+    public void setIdTutorias(int idTutorias) {
+        this.idTutorias = idTutorias;
     }
 
-    public static Date getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public static void setFecha(Date fecha) {
-        Tutorias.fecha = fecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public static String getContexto() {
+    public String getContexto() {
         return contexto;
     }
 
-    public static void setContexto(String contexto) {
-        Tutorias.contexto = contexto;
+    public void setContexto(String contexto) {
+        this.contexto = contexto;
     }
 
-    public static int getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
-    public static void setDuracion(int duracion) {
-        Tutorias.duracion = duracion;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
-    public static String getFkAlumno() {
+    public String getFkAlumno() {
         return fkAlumno;
     }
 
-    public static void setFkAlumno(String fkAlumno) {
-        Tutorias.fkAlumno = fkAlumno;
+    public void setFkAlumno(String fkAlumno) {
+        this.fkAlumno = fkAlumno;
     }
 
-    public static int getFkTutor() {
+    public int getFkTutor() {
         return fkTutor;
     }
 
-    public static void setFkTutor(int fkTutor) {
-        Tutorias.fkTutor = fkTutor;
+    public void setFkTutor(int fkTutor) {
+        this.fkTutor = fkTutor;
     }
 
-    public static int getFkEstatus() {
+    public int getFkEstatus() {
         return fkEstatus;
     }
 
-    public static void setFkEstatus(int fkEstatus) {
-        Tutorias.fkEstatus = fkEstatus;
+    public void setFkEstatus(int fkEstatus) {
+        this.fkEstatus = fkEstatus;
     }
 }

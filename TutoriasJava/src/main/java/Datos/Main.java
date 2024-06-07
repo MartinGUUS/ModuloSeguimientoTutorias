@@ -13,7 +13,7 @@ public class Main {
         List<Tutores> as = tutoresDAO.selectTutoresVarios();
         String tuto=" ";
         for (int i = 0; i < as.size(); i++) {
-           tuto= (as.get(i).getIdTutores()+".- "+as.get(i).getNombre().toUpperCase() + " " + as.get(i).getSegundoNombre().toUpperCase() + " " + as.get(i).getApPaterno().toUpperCase() + " " + as.get(i).getApMaterno().toUpperCase());
+           tuto= (as.get(i).getIdtutores()+".- "+as.get(i).getNombre().toUpperCase() + " " + as.get(i).getSegundoNombre().toUpperCase() + " " + as.get(i).getApPaterno().toUpperCase() + " " + as.get(i).getApMaterno().toUpperCase());
         }
 
     }
