@@ -30,7 +30,7 @@ public class svNuevoMensaje extends HttpServlet {
             Mensajes mensajeBean = new Mensajes(mensaje, asunto, fkTutor, alumno, fecha);
 
             MensajesDAO msj = new MensajesDAO();
-            msj.insertMensaje(mensajeBean);
+            msj.insertMensajeAlumno(mensajeBean);
 
             response.sendRedirect("Mensajes.jsp?status=success");
         } else {

@@ -5,15 +5,34 @@ import java.util.Date;
 
 public class Mensajes implements Serializable {
 
-    private static int idMensajes;
-    private static String mensaje;
-    private static String asunto;
-    private static int fkTutor;
-    private static String fkAlumno;
-    private static Date fecha;
+    private int idMensajes;
+    private String mensaje;
+    private String asunto;
+    private int fkTutor;
+    private String fkAlumno;
+    private Date fecha;
+    private String nombre;
+    private String segundoNombre;
+    private String apPaterno;
+    private String apMaterno;
+
 
     public Mensajes() {
     }
+
+    public Mensajes(int idMensajes, String mensaje, String asunto, int fkTutor, String fkAlumno, Date fecha, String nombre, String secondName, String apPterno, String apMaterno) {
+        this.idMensajes = idMensajes;
+        this.mensaje = mensaje;
+        this.asunto = asunto;
+        this.fkTutor = fkTutor;
+        this.fkAlumno = fkAlumno;
+        this.fecha = fecha;
+        this.nombre=nombre;
+        this.segundoNombre=secondName;
+        this.apPaterno=apPterno;
+        this.apMaterno=apMaterno;
+    }
+
 
     public Mensajes(int idMensajes, String mensaje, String asunto, int fkTutor, String fkAlumno, Date fecha) {
         this.idMensajes = idMensajes;
@@ -32,51 +51,83 @@ public class Mensajes implements Serializable {
         this.fecha = fecha;
     }
 
-    public static int getIdMensajes() {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getApPaterno() {
+        return apPaterno;
+    }
+
+    public void setApPaterno(String apPaterno) {
+        this.apPaterno = apPaterno;
+    }
+
+    public String getApMaterno() {
+        return apMaterno;
+    }
+
+    public void setApMaterno(String apMaterno) {
+        this.apMaterno = apMaterno;
+    }
+
+    public int getIdMensajes() {
         return idMensajes;
     }
 
-    public static void setIdMensajes(int idMensajes) {
-        Mensajes.idMensajes = idMensajes;
+    public void setIdMensajes(int idMensajes) {
+        this.idMensajes = idMensajes;
     }
 
-    public static String getMensaje() {
+    public String getMensaje() {
         return mensaje;
     }
 
-    public static void setMensaje(String mensaje) {
-        Mensajes.mensaje = mensaje;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
-    public static int getFkTutor() {
-        return fkTutor;
-    }
-
-    public static void setFkTutor(int fkTutor) {
-        Mensajes.fkTutor = fkTutor;
-    }
-
-    public static String getFkAlumno() {
-        return fkAlumno;
-    }
-
-    public static void setFkAlumno(String fkAlumno) {
-        Mensajes.fkAlumno = fkAlumno;
-    }
-
-    public static String getAsunto() {
+    public String getAsunto() {
         return asunto;
     }
 
-    public static void setAsunto(String asunto) {
-        Mensajes.asunto = asunto;
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
     }
 
-    public static Date getFecha() {
+    public int getFkTutor() {
+        return fkTutor;
+    }
+
+    public void setFkTutor(int fkTutor) {
+        this.fkTutor = fkTutor;
+    }
+
+    public String getFkAlumno() {
+        return fkAlumno;
+    }
+
+    public void setFkAlumno(String fkAlumno) {
+        this.fkAlumno = fkAlumno;
+    }
+
+    public Date getFecha() {
         return fecha;
     }
 
-    public static void setFecha(Date fecha) {
-        Mensajes.fecha = fecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

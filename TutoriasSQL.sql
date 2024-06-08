@@ -117,9 +117,12 @@ create table mensajes (
     idMensajes serial PRIMARY KEY,
     mensaje text,
     asunto text,
+    fecha DATE,
     fkTutor int,
     fkAlumno varchar,
+    fkEstatus int,
     Foreign Key (fkTutor) REFERENCES tutores (idTutores),
+    Foreign Key (fkEstatus) REFERENCES estatus (idEstatus),
     Foreign Key (fkAlumno) REFERENCES alumnos (matricula)
 );
 --------------------------------------------------------------------------------------
@@ -167,6 +170,6 @@ INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, cal
 -- Puedes agregar más inserciones para materias_alumnos
 
 -- Insertar en la tabla de mensajes
-INSERT INTO mensajes (mensaje, asunto, fkTutor, fkAlumno) VALUES ('Mensaje de prueba', 'Asunto de prueba', 1, 'A12345678');
-INSERT INTO mensajes (mensaje, asunto, fkTutor, fkAlumno) VALUES ('Otro mensaje de prueba', 'Otro asunto de prueba', 1, 'A12345678');
+INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Mensaje de prueba', 'Hola profe', '2024-06-05', 1, 'A12345678');
+INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Otro mensaje de prueba', 'Tengo dudas maestro', '2024-06-05', 1, 'A12345678');
 -- Puedes agregar más inserciones para mensajes
