@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="Datos.AlumnosDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -116,7 +118,22 @@
         <div class="msj-container">
             <form action="svNuevoMensajeTutor" method="post">
                 <label id="alumno">Para:</label>
-                <input type="text" name="alumno" placeholder="tutor@uv.mx...">
+                <select name="alumno">
+                    <%
+                        Integer idTutorLogin = (Integer) session.getAttribute("idTutorLogin");
+                        if (idTutorLogin != null) {
+                            AlumnosDAO alumnosDAO = new AlumnosDAO();
+                            List<String> correos = alumnosDAO.BuscarCorreoAlumno(idTutorLogin);
+                            for (String correo : correos) {
+                    %>
+                    <option value="<%= correo%>"><%= correo%></option>
+                    <%
+                            }
+                        } else {
+                            out.println("<option>No se encontró el id o el tutor no tiene tutorados.</option>");
+                        }
+                    %>
+                </select>
 
                 <label id="asunto">Asunto:</label>
                 <input type="text" name="asunto" placeholder="Tutorias...">

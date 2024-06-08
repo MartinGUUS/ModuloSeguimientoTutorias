@@ -14,6 +14,7 @@ public class AlumnosDAO {
     private static final String SQLSelectAlumnos = "SELECT * FROM alumnos ";
     private static final String SQLSelectUnAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ? AND fkAlumno = ?";
     private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
+    private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
 
     public static List<Alumnos> selectAlumnosUno(int fkTutor, String fkAlumno) {
         List<Alumnos> alumnos = new ArrayList<>();
@@ -132,7 +133,6 @@ public class AlumnosDAO {
         return alumno;
     }
 
-
     public static List<Alumnos> selectAlumnosVarios() {
         List<Alumnos> alumnos = new ArrayList<>();
         Connection conn = null;
@@ -222,5 +222,29 @@ public class AlumnosDAO {
             Conexion.close(conn);
         }
         return fkAlumno;
+    }
+
+    public List<String> BuscarCorreoAlumno(int fkTutor) {
+        List<String> correos = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SQLSelectVariosAlumnos);
+            ps.setInt(1, fkTutor);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String correo = rs.getString("correo");
+                correos.add(correo);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return correos;
     }
 }
