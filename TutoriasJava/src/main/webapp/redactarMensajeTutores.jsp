@@ -106,11 +106,7 @@
         <div class="navbar">
             <div class="logo">Redactar mensajes</div>
             <div class="menu">
-                <%
-                    String nombreTu = (String) request.getSession().getAttribute("nameTutor");
-                %>
-                <a href=""><%= nombreTu%>
-                </a>
+
                 <a href="menuTutor.jsp">Inicio</a>
             </div>
         </div>

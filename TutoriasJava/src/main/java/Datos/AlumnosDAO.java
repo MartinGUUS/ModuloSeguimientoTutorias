@@ -1,12 +1,16 @@
 package Datos;
 
 import Modelo.Alumnos;
+import Modelo.Tutores;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlumnosDAO {
+
+    private static final String SQLSelectAlumnoById = "SELECT * FROM alumnos WHERE matricula = ?";
+
 
     private static final String SQLinsertAlumno = "INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -15,6 +19,48 @@ public class AlumnosDAO {
     private static final String SQLSelectUnAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ? AND fkAlumno = ?";
     private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
     private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
+
+
+    public Alumnos selectTutorById(String matriculaa) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Alumnos alumno = null;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SQLSelectAlumnoById);
+            ps.setString(1, matriculaa);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String matricula = rs.getString("matricula");
+                String nombre = rs.getString("nombre");
+                String segundoNombre = rs.getString("segundonombre");
+                String apPaterno = rs.getString("appaterno");
+                String apMaterno = rs.getString("apmaterno");
+                Date fechaNac = rs.getDate("fechanac");
+                String numero = rs.getString("numero");
+                String correo = rs.getString("correo");
+                String direccion = rs.getString("direccion");
+                String contra = rs.getString("contra");
+                String carrera = rs.getString("carrera");
+                int semestre = rs.getInt("semestre");
+                int fkTutor = rs.getInt("fkTutor");
+                int fkEstatus = rs.getInt("fkEstatus");
+
+                alumno = new Alumnos(matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return alumno;
+    }
+
 
     public static List<Alumnos> selectAlumnosUno(int fkTutor, String fkAlumno) {
         List<Alumnos> alumnos = new ArrayList<>();

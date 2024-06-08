@@ -27,9 +27,9 @@
                 String apellido = (String) request.getSession().getAttribute("apAlumno");
 
             %>
-            <a href="index.jsp"><%= nombreAl + " " + apellido%>
+            <a href="informacionAlumno.jsp"><%= nombreAl + " " + apellido%>
             </a>
-            <a href="Estadisticas.jsp" class="icon">Stats de la App</a>
+
             <a href="Mensajes.jsp" class="icon">
                 <i class="fas fa-envelope"></i> Mensajería
             </a>
@@ -39,10 +39,8 @@
 </form>
 <div class="content">
     <div class="grid-container">
-        <a href="Alumnos.jsp" class="grid-item">Alumnos</a>
-        <a href="Notas.jsp" class="grid-item">Notas</a>
-        <a href="Tutorias.jsp" class="grid-item">Tutorias</a>
-        <a href="Estadisticas.jsp" class="grid-item">Estadisticas</a>
+        <a href="Alumnos.jsp" class="grid-item">Avance academico</a>
+
     </div>
 </div>
 </body>

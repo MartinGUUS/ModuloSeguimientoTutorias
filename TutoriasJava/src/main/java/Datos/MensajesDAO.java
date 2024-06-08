@@ -36,7 +36,7 @@ public class MensajesDAO {
             "    m.fkTutor = ? \n" +
             "    AND m.fkEstatus IS NULL\n" +
             "ORDER BY \n" +
-            "    m.fecha DESC LIMIT 100";
+            "    m.idMensajes DESC";
 
 
 
@@ -59,7 +59,7 @@ public class MensajesDAO {
             "    m.fkAlumno = ? \n" +
             "    AND m.fkEstatus = 1 \n" +
             "ORDER BY \n" +
-            "    m.fecha DESC LIMIT 100";
+            "    m.idMensajes DESC";
 
 
     public List<Mensajes> selectMensajesPorTutor(int fkTutor) {
