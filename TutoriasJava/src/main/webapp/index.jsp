@@ -6,15 +6,19 @@
     <title>Login Tutorias</title>
 
     <script>
-        function clearInputs() {
-            document.getElementById('mail').value = '';
-            document.getElementById('contra').value = '';
+        function borrarCampos() {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
         }
 
-        function showAlert(message) {
+        function mostrarAlert(message) {
             alert(message);
-            clearInputs();
+            borrarCampos();
         }
+
+        window.onload = function() {
+            borrarCampos();
+        };
     </script>
 
     <style>
@@ -80,6 +84,9 @@
         }
 
     </style>
+
+
+
 </head>
 <body>
 <div class="login-container">
@@ -91,18 +98,17 @@
         <label for="password">Clave</label>
         <input type="password" id="password" name="contra" >
 
-        <button type="submit" name="action" value="login">Loguear</button>
+        <button type="submit" name="action" value="login" >Loguear</button>
         <button type="submit" name="action" value="register">Registrar</button>
     </form>
 </div>
 
-
 <%
-    String errorMessage = (String) request.getAttribute("errorMessage");
-    if (errorMessage != null) {
+    String mensajeError = (String) request.getAttribute("errorMessage");
+    if (mensajeError != null) {
 %>
 <script>
-    showAlert('<%= errorMessage %>');
+    mostrarAlert('<%= mensajeError %>');
 </script>
 <%
     }

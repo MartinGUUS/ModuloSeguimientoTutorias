@@ -5,6 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mensajes</title>
+
+
+
+
         <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -98,6 +102,19 @@
                 background-color: #2575fc;
             }
         </style>
+
+        <%
+            // Evita que la página se almacene en caché
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+
+            // Redirige al usuario a la página de inicio de sesión si la sesión no está activa
+            if ((session.getAttribute("nameTutor") == null && session.getAttribute("idTutores") == null)) {
+                response.sendRedirect("index.jsp");
+            }
+        %>
+
     </head>
     <body>
         <div class="navbar">

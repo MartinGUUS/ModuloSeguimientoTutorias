@@ -70,6 +70,19 @@
             color: white;
         }
     </style>
+
+    <%
+        // Evita que la página se almacene en caché
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+
+        // Redirige al usuario a la página de inicio de sesión si la sesión no está activa
+        if ((session.getAttribute("nameTutor") == null && session.getAttribute("idTutores") == null)) {
+            response.sendRedirect("index.jsp");
+        }
+    %>
+
 </head>
 <body>
 <%

@@ -13,19 +13,10 @@ public class svCloseSession extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String accion = request.getParameter("action");
 
-        switch (accion) {
-            case "cerrarSesion":
-                HttpSession session = request.getSession();
-                session.removeAttribute("nameTutor");
-                session.removeAttribute("idTutorLogin");
-                session.removeAttribute("nombreAlumno");
-                session.removeAttribute("matriculaAlumno");
-                response.sendRedirect("index.jsp");
-                break;
-            default:
-                break;
-
+        if ("cerrarSesion".equals(accion)) {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            response.sendRedirect("index.jsp");
         }
-
     }
 }

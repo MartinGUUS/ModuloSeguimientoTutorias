@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="menuAlumno.css">
 
     <%
+        // Evita que la página se almacene en caché
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
 
-        if ((session.getAttribute("nombreAlumno") == null && session.getAttribute("matriculaAlumno") == null)) {
+        // Redirige al usuario a la página de inicio de sesión si la sesión no está activa
+        if (session.getAttribute("nombreAlumno") == null && session.getAttribute("matriculaAlumno") == null) {
             response.sendRedirect("index.jsp");
         }
     %>
@@ -39,7 +43,7 @@
 </form>
 <div class="content">
     <div class="grid-container">
-        <a href="Alumnos.jsp" class="grid-item">Avance academico</a>
+        <a href="" class="grid-item">Avance academico</a>
 
     </div>
 </div>

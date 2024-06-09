@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de alumnos y sus notas</title>
+
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -197,6 +199,20 @@
         });
     </script>
 
+
+
+
+    <%
+        // Evita que la página se almacene en caché
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+
+        // Redirige al usuario a la página de inicio de sesión si la sesión no está activa
+        if ((session.getAttribute("nameTutor") == null && session.getAttribute("idTutores") == null)) {
+            response.sendRedirect("index.jsp");
+        }
+    %>
 </head>
 <body>
 <div class="navbar">
@@ -210,40 +226,57 @@
         <div class="lista-alumnos">
             <h2>Lista de Alumnos</h2>
             <ul>
-                <%
+
+        <%
                     Integer idTutorLogin = (Integer) session.getAttribute("idTutorLogin");
                     if (idTutorLogin != null) {
                         AlumnosDAO alumnosDAO = new AlumnosDAO();
                         List<Alumnos> alumnos = alumnosDAO.selectAlumnosVariosPorTutor(idTutorLogin);
                         for (Alumnos alumno : alumnos) {
                 %>
-                <li><a href="javascript:void(0);" onclick="mostrarDetalles('<%= alumno.getMatricula() %>')">
-                    <%= alumno.getNombre() %> <%= alumno.getSegundoNombre() %> <%= alumno.getApPaterno() %> <%= alumno.getApMaterno() %>
-                </a></li>
-                <%
+    <li><a href="javascript:void(0);" onclick="mostrarDetalles('<%= alumno.getMatricula() %>')">
+        <%= alumno
+            .
+            getNombre
+            (
+            ) %> <%= alumno
+        .
+        getSegundoNombre
+        (
+        ) %> <%= alumno
+        .
+        getApPaterno
+        (
+        ) %> <%= alumno
+        .
+        getApMaterno
+        (
+        ) %>
+    </a></li>
+        <%
                         }
                     } else {
                         out.println("No se encontró el id del tutor en la sesión.");
                     }
                 %>
-            </ul>
+    </ul>
+    </div>
+    <div class="details">
+        <div id="detailsImage">
+            <img src="Images/UvLogo.png" alt="Selecciona una persona" width="100%" height="100%">
         </div>
-        <div class="details">
-            <div id="detailsImage">
-                <img src="Images/UvLogo.png" alt="Selecciona una persona" width="100%" height="100%">
+        <div id="detailsText" style="display: none;">
+            <div class="navbardetalle">
+                <h1>Notas</h1>
             </div>
-            <div id="detailsText" style="display: none;">
-                <div class="navbardetalle">
-                    <h1>Notas</h1>
-                </div>
-                <div id="datos-notas" class="section">
-                    <a id="nuevaNotaBtn" href="#">Agregar nueva nota</a>
-                    <ul id="nota-list"></ul>
+            <div id="datos-notas" class="section">
+                <a id="nuevaNotaBtn" href="#">Agregar nueva nota</a>
+                <ul id="nota-list"></ul>
 
-                </div>
             </div>
         </div>
     </div>
-</div>
-</body>
+    </div>
+    </div>
+    </body>
 </html>
