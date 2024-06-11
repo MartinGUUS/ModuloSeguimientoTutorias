@@ -4,7 +4,6 @@ import Modelo.Alumnos;
 import Modelo.Historial;
 import Modelo.Materias;
 import Modelo.Materias_alumnos;
-import Modelo.Tutores;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,6 +21,8 @@ public class AlumnosDAO {
     private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
     private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
     private static final String HistorialAlumnos = "SELECT m.nombre, m.creditos, ma.calificacion, ma.inscripcion FROM  alumnos a JOIN materias_alumnos ma ON a.matricula = ma.fkAlumnos JOIN  materias m ON ma.fkMaterias = m.idMaterias JOIN areas ar ON m.fkArea = ar.idAreas WHERE a.matricula = ? AND ar.idAreas = ?";
+    private static final String MateriasAprobadas = "SELECT COUNT(*) FROM materias_alumnos ma JOIN materias m ON ma.fkMaterias = m.idMaterias WHERE ma.calificacion > 6 AND m.fkArea = ? AND ma.fkalumnos=?";
+    private static final String MateriasTotales = "SELECT COUNT(*) FROM materias WHERE fkArea = ?";
 
     public Alumnos selectTutorById(String matriculaa) {
         Connection conn = null;
@@ -326,5 +327,44 @@ public class AlumnosDAO {
             Conexion.close(conn);
         }
         return historial;
+    }
+    
+    public static int contarMateriasAprobadas(int area, String matricula) {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(MateriasAprobadas);
+            ps.setInt(1, area);
+            ps.setString(2, matricula);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return count;
+    }
+    
+    public static int contarMateriasTotales(int area) {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(MateriasTotales);
+            ps.setInt(1, area);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return count;
     }
 }

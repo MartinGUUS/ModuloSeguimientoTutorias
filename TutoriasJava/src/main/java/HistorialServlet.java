@@ -5,13 +5,6 @@ import Modelo.Alumnos;
 import Modelo.Historial;
 import Modelo.Materias;
 import Modelo.Materias_alumnos;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
@@ -21,11 +14,28 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.encoders.EncoderUtil;
+import org.jfree.chart.encoders.ImageFormat;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/HistorialServlet")
 public class HistorialServlet extends HttpServlet {
@@ -99,7 +109,7 @@ public class HistorialServlet extends HttpServlet {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
             String nomFile = dateFormat.format(new Date());
             response.setContentType("application/pdf");
-            response.setHeader("Content-Disposition", "attachment; filename=HistorialAcademico_"+nomFile+".pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=HistorialAcademico_" + nomFile + ".pdf");
 
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, response.getOutputStream());
@@ -116,7 +126,7 @@ public class HistorialServlet extends HttpServlet {
 
             // Obtener información del alumno
             String matricula = "A12345678";
-            Alumnos alumno = AlumnosDAO.selectAlumnoPorMatricula(matricula);  // Asegúrate de tener este método en AlumnosDAO
+            Alumnos alumno = AlumnosDAO.selectAlumnoPorMatricula(matricula);
 
             // Escribir información del alumno en el documento
             writeStudentInfo(document, alumno);
@@ -152,13 +162,52 @@ public class HistorialServlet extends HttpServlet {
                 writeTableData(request, pdfTable, areaFormacion);
 
                 document.add(pdfTable);
-                document.add(new Paragraph(" "));  // Adding space between tables
+                document.add(new Paragraph(" "));
             }
+
+            // Crear y agregar el gráfico de barras
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            Map<Integer, Integer> materiasAprobadas = new HashMap<>();
+            Map<Integer, Integer> materiasTotales = new HashMap<>();
+
+            for (int area = 1; area <= 4; area++) {
+                int totalMaterias = AlumnosDAO.contarMateriasTotales(area);
+                int materiasConCalificacionMayorA6 = AlumnosDAO.contarMateriasAprobadas(area, matricula);
+                materiasTotales.put(area, totalMaterias);
+                materiasAprobadas.put(area, materiasConCalificacionMayorA6);
+            }
+            
+            String[] nombresAreas = {"Formación Básica", "Formación Disciplinaria", "Formación Terminal", "Formación Elección Libre"};
+
+            for (int i = 0; i < nombresAreas.length; i++) {
+                String nombreArea = nombresAreas[i];
+                int totalMaterias = materiasTotales.get(i + 1);
+                int materiasAprobadasCount = materiasAprobadas.get(i + 1);
+                double porcentajeAprobadas = ((double) materiasAprobadasCount / totalMaterias) * 100;
+
+                dataset.addValue(porcentajeAprobadas, "Porcentaje Aprobadas", nombreArea);
+            }
+
+            JFreeChart barChart = ChartFactory.createBarChart(
+                    "Porcentaje de Materias Aprobadas por Área",
+                    "Área",
+                    "Porcentaje",
+                    dataset,
+                    PlotOrientation.HORIZONTAL,
+                    true, true, false);
+
+            BufferedImage chartImage = barChart.createBufferedImage(600, 400);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            EncoderUtil.writeBufferedImage(chartImage, ImageFormat.PNG, baos);
+            byte[] chartBytes = baos.toByteArray();
+            com.lowagie.text.Image chartImagePdf = com.lowagie.text.Image.getInstance(chartBytes);
+            chartImagePdf.setAlignment(com.lowagie.text.Image.ALIGN_CENTER);
+            document.add(chartImagePdf);
 
             document.close();
 
         } catch (Exception e) {
-            System.err.println("Error: " + e);
+            e.printStackTrace();
         }
     }
 }
