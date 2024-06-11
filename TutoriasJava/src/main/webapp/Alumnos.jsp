@@ -178,6 +178,24 @@
             grid-column: span 2;
             text-align: center;
         }
+        .btn-historial {
+            width: 70%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #6a11cb;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-historial:hover {
+            background-color: #2575fc;
+        }
     </style>
 
 
@@ -231,6 +249,7 @@
             <div id="detailsText" style="display: none;">
                 <div class="navbardetalle">
                     <a href="#" onclick="showSection('datos-personales')">Datos personales</a>
+                    <a href="#" onclick="showSection('historial')">Historial Académico</a>
                 </div>
                 <div id="datos-personales" class="section">
                     <p><strong>Nombre:</strong> <span id="Nombre"></span></p>
@@ -242,6 +261,11 @@
                     <p><strong>Carrera:</strong> <span id="Carrera"></span></p>
                     <p><strong>Semestre:</strong> <span id="Semestre"></span></p>
                     <p><strong>Tutor:</strong> <span id="Tutor"></span></p>
+                </div>
+                <div id="historial" class="section">
+                    <form action="HistorialServlet">
+                        <button type="submit" name="accion" value="ExportarPDF" class="btn-historial">Descargar reporte PDF</i>
+                    </form>
                 </div>
             </div>
             <script>

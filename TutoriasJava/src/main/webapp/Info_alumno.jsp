@@ -109,6 +109,24 @@
                 color: #555;
                 text-align: right;
             }
+            .btn-historial {
+                width: 70%;
+                margin-top: 20px;
+                padding: 12px;
+                background-color: #6a11cb;
+                border-radius: 5px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin-bottom: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .btn-historial:hover {
+                background-color: #2575fc;
+            }
         </style>
         <script>
             function showSection(sectionId, nombre, matricula, correo, telefono, direccion, fechaNac, carrera, semestre, tutor) {
@@ -147,7 +165,7 @@
         <div class="navbar">
             <div class="logo">Información del alumno</div>
             <div class="menu">
-                <a href="menuTutor.jsp">Inicio</a>
+                <a href="menuAlumno.jsp">Inicio</a>
                 <a href="Mensajes.jsp" class="icon">
                     <i class="fas fa-envelope"></i> Mensajería
                 </a>
@@ -159,7 +177,7 @@
             <div class="grid-container">
                 <div class="navbardetalle">
                     <a href="#" onclick="showSection('datos-personales', 'Alberto Caballero Perez', 'S20004605', 'caballero@gmail.com', '229-1234', 'Coyol', '2001-11-03', 'Ingeniería Informática', '8vo', 'Diana')">Datos personales</a>
-                    <a href="#" onclick="showSection('materias')">Materias</a>
+                    <a href="#" onclick="showSection('historial')">Historial Académico</a>
                     <a href="#" onclick="showSection('informe')">Informe</a>
                     <a href="#" onclick="showSection('historial-tutorias')">Historial de tutorías</a>
                 </div>
@@ -179,99 +197,10 @@
                             <p><strong>Semestre:</strong> <span id="Semestre"></span></p>
                             <p><strong>Tutor:</strong> <span id="Tutor"></span></p>
                         </div>
-                        <div id="materias" class="section">
-                            <h2>Formación Básica</h2>
-                            <table border="2">
-                                <tr>
-                                    <th>Materia</th>
-                                    <th>Creditos</th>
-                                    <th>Tipo de inscripción</th>
-                                </tr>
-                                <tr>
-                                    <td>Daw</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                                <tr>
-                                    <td>Móviles</td>
-                                    <td>5</td>
-                                    <td>Segunda</td>
-                                </tr>
-                                <tr>
-                                    <td>Mates Discretas</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                            </table>
-                            <h2>Formación Disciplinaria</h2>
-                            <table border="2">
-                                <tr>
-                                    <th>Materia</th>
-                                    <th>Creditos</th>
-                                    <th>Tipo de inscripción</th>
-                                </tr>
-                                <tr>
-                                    <td>Daw</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                                <tr>
-                                    <td>Móviles</td>
-                                    <td>5</td>
-                                    <td>Segunda</td>
-                                </tr>
-                                <tr>
-                                    <td>Mates Discretas</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                            </table>
-                            <h2>Formación Terminal</h2>
-                            <table border="2">
-                                <tr>
-                                    <th>Materia</th>
-                                    <th>Creditos</th>
-                                    <th>Tipo de inscripción</th>
-                                </tr>
-                                <tr>
-                                    <td>Daw</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                                <tr>
-                                    <td>Móviles</td>
-                                    <td>5</td>
-                                    <td>Segunda</td>
-                                </tr>
-                                <tr>
-                                    <td>Mates Discretas</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                            </table>
-                            <h2>Elección Libre</h2>
-                            <table border="2">
-                                <tr>
-                                    <th>Materia</th>
-                                    <th>Creditos</th>
-                                    <th>Tipo de inscripción</th>
-                                </tr>
-                                <tr>
-                                    <td>Daw</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                                <tr>
-                                    <td>Móviles</td>
-                                    <td>5</td>
-                                    <td>Segunda</td>
-                                </tr>
-                                <tr>
-                                    <td>Mates Discretas</td>
-                                    <td>4</td>
-                                    <td>Primera</td>
-                                </tr>
-                            </table>
+                        <div id="historial" class="section">
+                            <form action="HistorialServlet">
+                                <button type="submit" name="accion" value="ExportarPDF" class="btn-historial">Descargar reporte PDF</i>
+                            </form>
                         </div>
                         <div id="informe" class="section">
                             <p>Aquí se mostraría una gráfica de rendimiento del alumno.</p>

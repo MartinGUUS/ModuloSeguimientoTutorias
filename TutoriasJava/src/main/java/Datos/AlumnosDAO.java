@@ -1,6 +1,9 @@
 package Datos;
 
 import Modelo.Alumnos;
+import Modelo.Historial;
+import Modelo.Materias;
+import Modelo.Materias_alumnos;
 import Modelo.Tutores;
 
 import java.sql.*;
@@ -11,7 +14,6 @@ public class AlumnosDAO {
 
     private static final String SQLSelectAlumnoById = "SELECT * FROM alumnos WHERE matricula = ?";
 
-
     private static final String SQLinsertAlumno = "INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SQLSelectVariosAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ?";
@@ -19,7 +21,7 @@ public class AlumnosDAO {
     private static final String SQLSelectUnAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ? AND fkAlumno = ?";
     private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
     private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
-
+    private static final String HistorialAlumnos = "SELECT m.nombre, m.creditos, ma.calificacion, ma.inscripcion FROM  alumnos a JOIN materias_alumnos ma ON a.matricula = ma.fkAlumnos JOIN  materias m ON ma.fkMaterias = m.idMaterias JOIN areas ar ON m.fkArea = ar.idAreas WHERE a.matricula = ? AND ar.idAreas = ?";
 
     public Alumnos selectTutorById(String matriculaa) {
         Connection conn = null;
@@ -60,7 +62,6 @@ public class AlumnosDAO {
         }
         return alumno;
     }
-
 
     public static List<Alumnos> selectAlumnosUno(int fkTutor, String fkAlumno) {
         List<Alumnos> alumnos = new ArrayList<>();
@@ -292,5 +293,38 @@ public class AlumnosDAO {
             Conexion.close(conn);
         }
         return correos;
+    }
+
+    public static List<Historial> HistorialAlumnos(String matricula, int idArea) {
+        List<Historial> historial = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(HistorialAlumnos);
+            ps.setString(1, matricula);
+            ps.setInt(2, idArea);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String nombreMateria = rs.getString("nombre");
+                int creditos = rs.getInt("creditos");
+                int calificacion = rs.getInt("calificacion");
+                int inscripcion = rs.getInt("inscripcion");
+                
+                Materias mat = new Materias(nombreMateria, creditos);
+                Materias_alumnos matal = new Materias_alumnos(calificacion, inscripcion);
+                Historial his = new Historial(mat, matal);
+                
+                historial.add(his);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return historial;
     }
 }

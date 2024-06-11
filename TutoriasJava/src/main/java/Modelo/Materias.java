@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Materias implements Serializable {
 
-    private static int idMaterias;
-    private static String nombre;
-    private static int creditos;
-    private static int fkArea;
+    private int idMaterias;
+    private String nombre;
+    private int creditos;
+    private int fkArea;
 
     public Materias() {
     }
@@ -24,36 +24,41 @@ public class Materias implements Serializable {
         this.creditos = creditos;
         this.fkArea = fkArea;
     }
-
-    public static int getIdMaterias() {
+    
+    public Materias(String nombre, int creditos) {
+        this.nombre = nombre;
+        this.creditos = creditos;
+    }
+    
+    public int getIdMaterias() {
         return idMaterias;
     }
 
-    public static void setIdMaterias(int idMaterias) {
-        Materias.idMaterias = idMaterias;
+    public void setIdMaterias(int idMaterias) {
+        this.idMaterias = idMaterias;
     }
 
-    public static String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public static void setNombre(String nombre) {
-        Materias.nombre = nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public static int getCreditos() {
+    public int getCreditos() {
         return creditos;
     }
 
-    public static void setCreditos(int creditos) {
-        Materias.creditos = creditos;
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
     }
 
-    public static int getFkArea() {
+    public int getFkArea() {
         return fkArea;
     }
 
-    public static void setFkArea(int fkArea) {
-        Materias.fkArea = fkArea;
+    public void setFkArea(int fkArea) {
+        this.fkArea = fkArea;
     }
 }

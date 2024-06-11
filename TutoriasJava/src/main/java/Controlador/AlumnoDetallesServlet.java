@@ -13,10 +13,11 @@ import com.google.gson.Gson;
 
 @WebServlet("/AlumnoDetallesServlet")
 public class AlumnoDetallesServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricula = request.getParameter("matricula");
         if (matricula != null) {
-            Alumnos alumno = AlumnosDAO.selectAlumnoPorMatricula(matricula); // Necesitarás implementar este método en AlumnosDAO
+            Alumnos alumno = AlumnosDAO.selectAlumnoPorMatricula(matricula);
             if (alumno != null) {
                 String json = new Gson().toJson(alumno);
                 response.setContentType("application/json");

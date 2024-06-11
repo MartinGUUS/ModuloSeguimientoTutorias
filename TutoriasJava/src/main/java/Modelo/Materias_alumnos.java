@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Materias_alumnos implements Serializable {
 
-    private static int fkMaterias;
-    private static String fkAlumnos;
-    private static int fkEstatus;
-    private static int inscripcion;
-    private static int calificacion;
+    private int fkMaterias;
+    private String fkAlumnos;
+    private int fkEstatus;
+    private int inscripcion;
+    private int calificacion;
 
     public Materias_alumnos() {
     }
@@ -20,45 +20,49 @@ public class Materias_alumnos implements Serializable {
         this.inscripcion = inscripcion;
         this.calificacion = calificacion;
     }
+    
+    public Materias_alumnos(int calificacion, int inscripcion) {
+        this.calificacion = calificacion;
+        this.inscripcion = inscripcion;
+    }
 
-
-    public static int getFkMaterias() {
+    public int getFkMaterias() {
         return fkMaterias;
     }
 
-    public static void setFkMaterias(int fkMaterias) {
-        Materias_alumnos.fkMaterias = fkMaterias;
+    public void setFkMaterias(int fkMaterias) {
+        this.fkMaterias = fkMaterias;
     }
 
-    public static String getFkAlumnos() {
+    public String getFkAlumnos() {
         return fkAlumnos;
     }
 
-    public static void setFkAlumnos(String fkAlumnos) {
-        Materias_alumnos.fkAlumnos = fkAlumnos;
+    public void setFkAlumnos(String fkAlumnos) {
+        this.fkAlumnos = fkAlumnos;
     }
 
-    public static int getFkEstatus() {
+    public int getFkEstatus() {
         return fkEstatus;
     }
 
-    public static void setFkEstatus(int fkEstatus) {
-        Materias_alumnos.fkEstatus = fkEstatus;
+    public void setFkEstatus(int fkEstatus) {
+        this.fkEstatus = fkEstatus;
     }
 
-    public static int getInscripcion() {
+    public int getInscripcion() {
         return inscripcion;
     }
 
-    public static void setInscripcion(int inscripcion) {
-        Materias_alumnos.inscripcion = inscripcion;
+    public void setInscripcion(int inscripcion) {
+        this.inscripcion = inscripcion;
     }
 
-    public static int getCalificacion() {
+    public int getCalificacion() {
         return calificacion;
     }
 
-    public static void setCalificacion(int calificacion) {
-        Materias_alumnos.calificacion = calificacion;
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
     }
 }

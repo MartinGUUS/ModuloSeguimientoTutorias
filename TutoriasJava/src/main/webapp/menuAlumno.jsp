@@ -43,7 +43,7 @@
 </form>
 <div class="content">
     <div class="grid-container">
-        <a href="" class="grid-item">Avance academico</a>
+        <a href="Info_alumno.jsp" class="grid-item">Avance academico</a>
 
     </div>
 </div>
