@@ -1,10 +1,12 @@
+<%@page import="Datos.Materias_alumnosDAO"%>
+<%@page import="Modelo.Alumnos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Información del alumno</title>
+        <title>Avance del alumno</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <style>
             body {
@@ -124,48 +126,11 @@
                 margin-left: auto;
                 margin-right: auto;
             }
-            .btn-historial2 {
-                width: 81px;
-                margin-top: 20px;
-                padding: 12px;
-                background-color: #6a11cb;
-                border-radius: 5px;
-                color: white;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                margin-bottom: 10px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
             .btn-historial:hover {
                 background-color: #2575fc;
             }
-            .btn-historial2:hover {
-                background-color: #2575fc;
-            }
         </style>
-        <script>
-            function showSection(sectionId, nombre, matricula, correo, telefono, direccion, fechaNac, carrera, semestre, tutor) {
-                var sections = document.getElementsByClassName('section');
-                for (var i = 0; i < sections.length; i++) {
-                    sections[i].style.display = 'none';
-                }
-                document.getElementById(sectionId).style.display = 'block';
-                document.getElementById('detailsImage').style.display = 'none';
-                document.getElementById('detailsText').style.display = 'block';
-                document.getElementById('Nombre').textContent = nombre;
-                document.getElementById('Correo').textContent = correo;
-                document.getElementById('Telefono').textContent = telefono;
-                document.getElementById('Matricula').textContent = matricula;
-                document.getElementById('FechaNac').textContent = fechaNac;
-                document.getElementById('Direccion').textContent = direccion;
-                document.getElementById('Carrera').textContent = carrera;
-                document.getElementById('Semestre').textContent = semestre;
-                document.getElementById('Tutor').textContent = tutor;
-            }
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <div class="navbar">
@@ -181,37 +146,53 @@
 
         <div class="content">
             <div class="grid-container">
-                <div class="navbardetalle">
-                    <a href="#" onclick="showSection('datos-personales', 'Alberto Caballero Perez', 'S20004605', 'caballero@gmail.com', '229-1234', 'Coyol', '2001-11-03', 'Ingeniería Informática', '8vo', 'Diana')">Datos personales</a>
-                    <a href="#" onclick="showSection('historial')">Historial Académico</a>
-                    <a href="#" onclick="showSection('reporte')">Reporte de Avance</a>
-                </div>
-                <div class="details">
-                    <div id="detailsImage">
-                        <img src="Images/UvLogo.png" alt="Imagen de espera" width="100%" height="320px">
-                    </div>
-                    <div id="detailsText" style="display: none;">
-                        <div id="datos-personales" class="section">
-                            <p><strong>Nombre:</strong> <span id="Nombre"></span></p>
-                            <p><strong>Matricula:</strong> <span id="Matricula"></span></p>
-                            <p><strong>Correo:</strong> <span id="Correo"></span></p>
-                            <p><strong>Numero:</strong> <span id="Telefono"></span></p>
-                            <p><strong>Dirección:</strong> <span id="Direccion"></span></p>
-                            <p><strong>Fecha de nacimiento:</strong> <span id="FechaNac"></span></p>
-                            <p><strong>Carrera:</strong> <span id="Carrera"></span></p>
-                            <p><strong>Semestre:</strong> <span id="Semestre"></span></p>
-                            <p><strong>Tutor:</strong> <span id="Tutor"></span></p>
-                        </div>
-                        <div id="historial" class="section">
-                            <form action="HistorialServlet">
-                                <button type="submit" value="ExportarPDF" class="btn-historial">Descargar reporte PDF</button>
-                            </form>
-                        </div>
-                        <div id="reporte" class="section">
-                            <a href="Reporte.jsp" class="btn-historial2">Ver Avance</a>
-                        </div>
-                    </div>
-                </div>
+                <canvas id="avanceChart"></canvas>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var ctx = document.getElementById('avanceChart').getContext('2d');
+
+                    <% Alumnos alumno = Materias_alumnosDAO.selectAlumnoPorMatricula("A12345678");
+                        int[] avanceEsperadoPorSemestre = {7, 13, 19, 25, 32, 39, 45, 52, 56, 56, 56, 56, 56, 56};
+                        int totalAvanceEsperado = avanceEsperadoPorSemestre[alumno.getSemestre() - 1];
+
+                        int[] avanceRealPorSemestre = {7, 13, 19, 25, 31, 36, 41, 46, 51, 56, 56, 56, 56, 56};
+                        int totalAvanceReal = avanceRealPorSemestre[alumno.getSemestre() - 1];
+                    %>
+
+                        var avanceTotal = <%= Materias_alumnosDAO.contarAvanceTotal("A12345678")%>;
+                        var avanceEsperado = <%= totalAvanceEsperado%>;
+                        var avanceEsperadoReal = <%= totalAvanceReal%>;
+
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Avance Actual', 'Avance Esperado', 'Avance Esperado Real'],
+                                datasets: [{
+                                        label: 'Materias aprobadas',
+                                        data: [avanceTotal, avanceEsperado, avanceEsperadoReal],
+                                        backgroundColor: [
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(200, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(200, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
             </div>
         </div>
     </body>

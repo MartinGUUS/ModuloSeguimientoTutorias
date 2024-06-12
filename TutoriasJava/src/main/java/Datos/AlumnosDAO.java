@@ -21,8 +21,8 @@ public class AlumnosDAO {
     private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
     private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
     private static final String HistorialAlumnos = "SELECT m.nombre, m.creditos, ma.calificacion, ma.inscripcion FROM  alumnos a JOIN materias_alumnos ma ON a.matricula = ma.fkAlumnos JOIN  materias m ON ma.fkMaterias = m.idMaterias JOIN areas ar ON m.fkArea = ar.idAreas WHERE a.matricula = ? AND ar.idAreas = ?";
-    private static final String MateriasAprobadas = "SELECT COUNT(*) FROM materias_alumnos ma JOIN materias m ON ma.fkMaterias = m.idMaterias WHERE ma.calificacion > 6 AND m.fkArea = ? AND ma.fkalumnos=?";
-    private static final String MateriasTotales = "SELECT COUNT(*) FROM materias WHERE fkArea = ?";
+    private static final String MateriasAprobadas = "SELECT COUNT(*) FROM materias_alumnos ma JOIN materias m ON ma.fkMaterias = m.idMaterias WHERE ma.calificacion > 6 AND fkArea = ? AND ma.fkalumnos=?";
+    private static final String MateriasTotalesPorArea = "SELECT COUNT(*) FROM materias WHERE fkArea = ?";
 
     public Alumnos selectTutorById(String matriculaa) {
         Connection conn = null;
@@ -312,11 +312,11 @@ public class AlumnosDAO {
                 int creditos = rs.getInt("creditos");
                 int calificacion = rs.getInt("calificacion");
                 int inscripcion = rs.getInt("inscripcion");
-                
+
                 Materias mat = new Materias(nombreMateria, creditos);
                 Materias_alumnos matal = new Materias_alumnos(calificacion, inscripcion);
                 Historial his = new Historial(mat, matal);
-                
+
                 historial.add(his);
             }
         } catch (SQLException ex) {
@@ -328,7 +328,7 @@ public class AlumnosDAO {
         }
         return historial;
     }
-    
+
     public static int contarMateriasAprobadas(int area, String matricula) {
         int count = 0;
         Connection conn = null;
@@ -348,15 +348,15 @@ public class AlumnosDAO {
         }
         return count;
     }
-    
-    public static int contarMateriasTotales(int area) {
+
+    public static int contarMateriasTotalesPorArea(int area) {
         int count = 0;
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(MateriasTotales);
+            ps = conn.prepareStatement(MateriasTotalesPorArea);
             ps.setInt(1, area);
             rs = ps.executeQuery();
             if (rs.next()) {

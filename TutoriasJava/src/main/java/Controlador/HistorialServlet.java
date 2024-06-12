@@ -164,25 +164,25 @@ public class HistorialServlet extends HttpServlet {
                 document.add(pdfTable);
                 document.add(new Paragraph(" "));
             }
-
+            
             // Crear y agregar el gráfico de barras
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-            Map<Integer, Integer> materiasAprobadas = new HashMap<>();
-            Map<Integer, Integer> materiasTotales = new HashMap<>();
+            Map<Integer, Integer> materiasAprobadasPorArea = new HashMap<>();
+            Map<Integer, Integer> materiasTotalesPorArea = new HashMap<>();
 
             for (int area = 1; area <= 4; area++) {
-                int totalMaterias = AlumnosDAO.contarMateriasTotales(area);
+                int totalMaterias = AlumnosDAO.contarMateriasTotalesPorArea(area);
                 int materiasConCalificacionMayorA6 = AlumnosDAO.contarMateriasAprobadas(area, matricula);
-                materiasTotales.put(area, totalMaterias);
-                materiasAprobadas.put(area, materiasConCalificacionMayorA6);
+                materiasTotalesPorArea.put(area, totalMaterias);
+                materiasAprobadasPorArea.put(area, materiasConCalificacionMayorA6);
             }
-            
+
             String[] nombresAreas = {"Formación Básica", "Formación Disciplinaria", "Formación Terminal", "Formación Elección Libre"};
 
             for (int i = 0; i < nombresAreas.length; i++) {
                 String nombreArea = nombresAreas[i];
-                int totalMaterias = materiasTotales.get(i + 1);
-                int materiasAprobadasCount = materiasAprobadas.get(i + 1);
+                int totalMaterias = materiasTotalesPorArea.get(i + 1);
+                int materiasAprobadasCount = materiasAprobadasPorArea.get(i + 1);
                 double porcentajeAprobadas = ((double) materiasAprobadasCount / totalMaterias) * 100;
 
                 dataset.addValue(porcentajeAprobadas, "Porcentaje Aprobadas", nombreArea);
@@ -203,7 +203,7 @@ public class HistorialServlet extends HttpServlet {
             com.lowagie.text.Image chartImagePdf = com.lowagie.text.Image.getInstance(chartBytes);
             chartImagePdf.setAlignment(com.lowagie.text.Image.ALIGN_CENTER);
             document.add(chartImagePdf);
-
+            
             document.close();
 
         } catch (Exception e) {
