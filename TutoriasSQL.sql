@@ -145,8 +145,10 @@ VALUES ('Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', '555-123-4567', 'jua
 
 -- Insertar en la tabla de alumnos
 INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus)
-VALUES ('A12345678', 'María', 'Isabel', 'García', 'López', '1995-08-25', '555-987-6543', 'maria@example.com', 'Avenida Secundaria 456', 'contraseña456', 'Licenciatura en Administración', 2, 1, 1);
--- Puedes agregar más inserciones para alumnos
+VALUES ('s20004426', 'María', 'Isabel', 'García', 'López', '1995-08-25', '555-987-6543', 'maria@example.com', 'Avenida Secundaria 456', 'contraseña456', 'Licenciatura en Administración', 2, 1, 1);
+
+
+
 
 -- Insertar en la tabla de materias
 INSERT INTO materias (nombre, creditos, fkArea) VALUES ('Materia 1', 5, 1);
@@ -154,22 +156,22 @@ INSERT INTO materias (nombre, creditos, fkArea) VALUES ('Materia 2', 4, 2);
 -- Puedes agregar más inserciones para materias
 
 -- Insertar en la tabla de notas
-INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 'A12345678', 'Notas del alumno A12345678');
-INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 'A12345678', 'Notas del alumno A12345678');
+INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 's20004426', 'Notas del alumno A12345678');
+INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 's20004426', 'Notas del alumno A12345678');
 
 -- Puedes agregar más inserciones para notas
 
 -- Insertar en la tabla de tutorías
-INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-05-29', 'Contexto de la tutoría', 60, 'A12345678', 1, 1);
-INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-06-05', 'Otro contexto de la tutoría', 45, 'A12345678', 1, 1);
+INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-05-29', 'Contexto de la tutoría', 60, 's20004426', 1, 1);
+INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-06-05', 'Otro contexto de la tutoría', 45, 's20004426', 1, 1);
 -- Puedes agregar más inserciones para tutorías
 
 -- Insertar en la tabla de materias_alumnos
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (1, 'A12345678', 1, 2023, 90);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (1, 'A12345678', 1, 2022, 85);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (1, 's20004426', 1, 2023, 90);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (1, 's20004426', 1, 2022, 85);
 -- Puedes agregar más inserciones para materias_alumnos
 
 -- Insertar en la tabla de mensajes
-INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Mensaje de prueba', 'Hola profe', '2024-06-05', 1, 'A12345678');
-INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Otro mensaje de prueba', 'Tengo dudas maestro', '2024-06-05', 1, 'A12345678');
+INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Mensaje de prueba', 'Hola profe', '2024-06-05', 1, 's20004426');
+INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Otro mensaje de prueba', 'Tengo dudas maestro', '2024-06-05', 1, 's20004426');
 -- Puedes agregar más inserciones para mensajes
