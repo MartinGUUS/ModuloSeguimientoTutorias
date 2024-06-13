@@ -5,14 +5,26 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Image;
 import Modelo.Alumnos;
 import Modelo.Materias;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.ui.TextAnchor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
@@ -21,6 +33,7 @@ import java.util.stream.Collectors;
 
 @WebServlet("/GeneratePDFServlet")
 public class GeneratePDFServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricula = request.getParameter("matricula");
@@ -163,19 +176,74 @@ public class GeneratePDFServlet extends HttpServlet {
             headerCreditosTotales.setBackgroundColor(BaseColor.GREEN);
             totalCreditosTable.addCell(headerCreditosTotales);
 
+            int sumCreditosAlumno = 0;
+            int sumCreditosTotales = 0;
+
             for (String area : order) {
                 if (totalCreditosPorArea.containsKey(area)) {
                     totalCreditosTable.addCell(area);
                     totalCreditosTable.addCell(String.valueOf(totalCreditosPorArea.get(area)));
                     totalCreditosTable.addCell(String.valueOf(creditosTotalesPorArea.get(area)));
+
+                    sumCreditosAlumno += totalCreditosPorArea.get(area);
+                    sumCreditosTotales += creditosTotalesPorArea.get(area);
                 }
             }
 
+            // Añadir la fila con los totales sumados
+            PdfPCell totalLabelCell = new PdfPCell(new Paragraph("Totales", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.BLACK)));
+            totalLabelCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            totalLabelCell.setBackgroundColor(BaseColor.GREEN);
+            totalCreditosTable.addCell(totalLabelCell);
+
+            PdfPCell sumCreditosAlumnoCell = new PdfPCell(new Paragraph(String.valueOf(sumCreditosAlumno), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.BLACK)));
+            sumCreditosAlumnoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            sumCreditosAlumnoCell.setBackgroundColor(BaseColor.GREEN);
+            totalCreditosTable.addCell(sumCreditosAlumnoCell);
+
+            PdfPCell sumCreditosTotalesCell = new PdfPCell(new Paragraph(String.valueOf(sumCreditosTotales), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.BLACK)));
+            sumCreditosTotalesCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            sumCreditosTotalesCell.setBackgroundColor(BaseColor.GREEN);
+            totalCreditosTable.addCell(sumCreditosTotalesCell);
+
             document.add(totalCreditosTable);
+
+            document.add(new Paragraph(" ")); // Añadir un espacio en blanco
+
+            // Crear y añadir gráfico de barras al documento
+            JFreeChart barChart = createBarChart(alumno.getSemestre(), sumCreditosAlumno, sumCreditosTotales);
+            ByteArrayOutputStream chartOut = new ByteArrayOutputStream();
+            ChartUtils.writeChartAsPNG(chartOut, barChart, 500, 300);  // Modificar tamaño del gráfico
+            Image chartImage = Image.getInstance(chartOut.toByteArray());
+            chartImage.setAlignment(Element.ALIGN_CENTER);
+            document.add(chartImage);
 
             document.close();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    private JFreeChart createBarChart(int semestre, int totalCreditosAlumno, int creditosTotales) {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        double promedioCreditosPorSemestre = creditosTotales / 9.0;
+        int expectedCreditos = (int) (promedioCreditosPorSemestre * semestre);
+        dataset.addValue(totalCreditosAlumno, "Créditos Obtenidos", "Alumno");
+        dataset.addValue(expectedCreditos, "Créditos Esperados", "Promedio");
+
+        JFreeChart barChart = ChartFactory.createBarChart(
+                "Comparación de Créditos",
+                "Categoría",
+                "Créditos",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        BarRenderer renderer = (BarRenderer) barChart.getCategoryPlot().getRenderer();
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        renderer.setDefaultItemLabelsVisible(true);
+        renderer.setDefaultPositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.BASELINE_CENTER));
+
+        return barChart;
     }
 }

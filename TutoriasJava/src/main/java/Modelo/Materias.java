@@ -8,9 +8,9 @@ public class Materias implements Serializable {
     private String nombre;
     private int creditos;
     private int fkArea;
-    private String area; // Añadir campo para el área
-    private int inscripcion; // Añadir campo para la inscripción
-    private int calificacion; // Añadir campo para la calificación
+    private String area;
+    private int inscripcion;
+    private int calificacion;
 
     public Materias() {
     }

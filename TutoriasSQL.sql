@@ -153,10 +153,22 @@ VALUES ('Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', '5551234567', 'juan@
 
 
 INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus)
-VALUES ('s20004426', 'María', 'Isabel', 'García', 'López', '1995-08-25', '5559876543', 'maria@example.com', 'Avenida Secundaria 456', 'contraseña456', 'Licenciatura en Administración', 2, 1, 1);
+VALUES ('S20004426', 'María', 'Isabel', 'García', 'López', '1995-08-25', '5559876543', 'maria@example.com', 'Avenida Secundaria 456', 'contraseña456', 'Ingeniería en Electrónica y Comunicaciones', 6, 1, 1);
 
 INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, fechaNac, numero, correo, direccion, contra, carrera, semestre, fkTutor, fkEstatus)
-VALUES ('s20004425', 'Martin', 'Gustavo', 'Acosta', 'Romero', '2002-12-01', '2295233407', 'martin@example.com', 'Avenida Secundaria 456', 'contraseña456', 'Licenciatura en Administración', 2, 1, 1);
+VALUES ('S20004425', 'Martin', 'Gustavo', 'Acosta', 'Romero', '2002-12-01', '2295233407', 'martin@example.com', 'Avenida Secundaria 456', 'contraseña456', 'Ingeniería en Electrónica y Comunicaciones', 2, 1, 1);
+
+INSERT INTO alumnos (matricula, nombre, segundoNombre, apPaterno, apMaterno, correo, numero, direccion, fechaNac, carrera, semestre, fkTutor) VALUES 
+('S00000001', 'Juan', 'Carlos', 'Gomez', 'Perez', 'juan.carlos.gomez@ejemplo.com', '5551234567', 'Calle 123, Ciudad', '2000-01-01', 'Ingeniería Informática', 1, 1),
+('S00000002', 'Ana', 'Maria', 'Lopez', 'Martinez', 'ana.maria.lopez@ejemplo.com', '5551234568', 'Avenida 456, Ciudad', '1999-02-01', 'Ingeniería Mecatrónica', 1, 1),
+('S00000003', 'Luis', 'Fernando', 'Hernandez', 'Garcia', 'luis.fernando.hernandez@ejemplo.com', '5551234569', 'Boulevard 789, Ciudad', '1998-03-01', 'Ingeniería Civil', 1, 1),
+('S00000004', 'Maria', 'Luisa', 'Ramirez', 'Sanchez', 'maria.luisa.ramirez@ejemplo.com', '5551234570', 'Calle 101, Ciudad', '2001-04-01', 'Ingeniería Química', 1, 1),
+('S00000005', 'Jose', 'Manuel', 'Vega', 'Torres', 'jose.manuel.vega@ejemplo.com', '5551234571', 'Avenida 102, Ciudad', '1997-05-01', 'Ingeniería Industrial', 1, 1),
+('S00000006', 'Sofia', 'Isabel', 'Gonzalez', 'Morales', 'sofia.isabel.gonzalez@ejemplo.com', '5551234572', 'Boulevard 103, Ciudad', '2002-06-01', 'Ingeniería Topográfica', 1, 1),
+('S00000007', 'Carlos', 'Eduardo', 'Diaz', 'Ortiz', 'carlos.eduardo.diaz@ejemplo.com', '5551234573', 'Calle 104, Ciudad', '1996-07-01', 'Ingeniería Mecánica Eléctrica', 1, 1),
+('S00000008', 'Laura', 'Beatriz', 'Castro', 'Nunez', 'laura.beatriz.castro@ejemplo.com', '5551234574', 'Avenida 105, Ciudad', '2000-08-01', 'Ingeniería Informática', 1, 1),
+('S00000009', 'Ricardo', 'Antonio', 'Martinez', 'Ruiz', 'ricardo.antonio.martinez@ejemplo.com', '5551234575', 'Boulevard 106, Ciudad', '1999-09-01', 'Ingeniería en Electrónica y Comunicaciones', 1, 1),
+('S00000010', 'Patricia', 'Alejandra', 'Sosa', 'Jimenez', 'patricia.alejandra.sosa@ejemplo.com', '5551234576', 'Calle 107, Ciudad', '2001-10-01', 'Ingeniería Mecatrónica', 1, 1);
 
 
 
@@ -224,76 +236,76 @@ INSERT INTO materias (nombre, creditos, fkArea) VALUES ('Probabilidad y Estadís
 
 
 
-INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 's20004426', 'Notas del alumno nota 1');
-INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 's20004426', 'Notas del alumno nota 2');
+INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 'S20004426', 'Notas del alumno nota 1');
+INSERT INTO notas (fkTutor, fkAlumno, notas) VALUES (1, 'S20004426', 'Notas del alumno nota 2');
 
 
 
 
-INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-05-29', 'Contexto de la tutoría', 60, 's20004426', 1, 1);
-INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-06-05', 'Otro contexto de la tutoría', 45, 's20004426', 1, 1);
-
-
-
-
-
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (1, 's20004426', 1, 1, 90);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (2, 's20004426', 1, 1, 85);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (3, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (4, 's20004426', 1, 1, 92);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (5, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (6, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (7, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (8, 's20004426', 1, 1, 86);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (9, 's20004426', 1, 1, 84);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (10, 's20004426', 1, 1, 83);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (11, 's20004426', 1, 1, 82);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (12, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (13, 's20004426', 1, 1, 85);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (14, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (15, 's20004426', 1, 1, 90);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (16, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (17, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (18, 's20004426', 1, 1, 92);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (19, 's20004426', 1, 1, 84);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (20, 's20004426', 1, 1, 83);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (21, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (22, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (23, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (24, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (25, 's20004426', 1, 1, 92);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (26, 's20004426', 1, 1, 84);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (27, 's20004426', 1, 1, 83);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (28, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (29, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (30, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (31, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (32, 's20004426', 1, 1, 92);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (33, 's20004426', 1, 1, 84);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (34, 's20004426', 1, 1, 83);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (35, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (36, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (37, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (38, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (39, 's20004426', 1, 1, 92);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (40, 's20004426', 1, 1, 84);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (41, 's20004426', 1, 1, 83);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (42, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (43, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (44, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (45, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (46, 's20004426', 1, 1, 92);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (47, 's20004426', 1, 1, 84);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (48, 's20004426', 1, 1, 83);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (49, 's20004426', 1, 1, 88);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (50, 's20004426', 1, 1, 87);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (51, 's20004426', 1, 1, 89);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (52, 's20004426', 1, 1, 91);
-INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (53, 's20004426', 1, 1, 92);
+INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-05-29', 'Contexto de la tutoría', 60, 'S20004426', 1, 1);
+INSERT INTO tutorias (fecha, contexto, duracion, fkAlumno, fkTutor, fkEstatus) VALUES ('2024-06-05', 'Otro contexto de la tutoría', 45, 'S20004426', 1, 1);
 
 
 
 
 
-INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Mensaje de prueba', 'Hola profe', '2024-06-05', 1, 's20004426');
-INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Otro mensaje de prueba', 'Tengo dudas maestro', '2024-06-05', 1, 's20004426');
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (1, 'S20004426', 1, 1, 90);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (2, 'S20004426', 1, 1, 85);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (3, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (4, 'S20004426', 1, 1, 92);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (5, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (6, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (7, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (8, 'S20004426', 1, 1, 86);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (9, 'S20004426', 1, 1, 84);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (10, 'S20004426', 1, 1, 83);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (11, 'S20004426', 1, 1, 82);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (12, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (13, 'S20004426', 1, 1, 85);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (14, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (15, 'S20004426', 1, 1, 90);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (16, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (17, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (18, 'S20004426', 1, 1, 92);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (19, 'S20004426', 1, 1, 84);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (20, 'S20004426', 1, 1, 83);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (21, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (22, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (23, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (24, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (25, 'S20004426', 1, 1, 92);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (26, 'S20004426', 1, 1, 84);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (27, 'S20004426', 1, 1, 83);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (28, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (29, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (30, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (31, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (32, 'S20004426', 1, 1, 92);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (33, 'S20004426', 1, 1, 84);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (34, 'S20004426', 1, 1, 83);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (35, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (36, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (37, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (38, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (39, 'S20004426', 1, 1, 92);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (40, 'S20004426', 1, 1, 84);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (41, 'S20004426', 1, 1, 83);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (42, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (43, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (44, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (45, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (46, 'S20004426', 1, 1, 92);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (47, 'S20004426', 1, 1, 84);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (48, 'S20004426', 1, 1, 83);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (49, 'S20004426', 1, 1, 88);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (50, 'S20004426', 1, 1, 87);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (51, 'S20004426', 1, 1, 89);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (52, 'S20004426', 1, 1, 91);
+INSERT INTO materias_alumnos (fkMaterias, fkAlumnos, fkEstatus, inscripcion, calificacion) VALUES (53, 'S20004426', 1, 1, 92);
+
+
+
+
+
+INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Mensaje de prueba', 'Hola profe', '2024-06-05', 1, 'S20004426');
+INSERT INTO mensajes (mensaje, asunto, fecha, fkTutor, fkAlumno) VALUES ('Otro mensaje de prueba', 'Tengo dudas maestro', '2024-06-05', 1, 'S20004426');

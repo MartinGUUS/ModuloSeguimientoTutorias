@@ -53,32 +53,6 @@
             color: white;
         }
 
-        .navbar .menu .icon {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .navbardetalle {
-            overflow: hidden;
-            background-color: #333;
-            margin-bottom: 5px;
-        }
-
-        .navbardetalle a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbardetalle a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
         .content {
             flex: 1;
             display: flex;
@@ -100,50 +74,52 @@
             gap: 20px;
         }
 
-        .grid-container .lista-alumnos, .detalle-alumnos {
-            flex: 1;
-            padding: 10px;
-        }
-
         .lista-alumnos {
             border-right: 1px solid #ccc;
+            max-height: 500px; /* Fixed height for scrolling */
+            overflow-y: auto;
         }
 
-        .lista-alumnos ul {
-            list-style: none;
-            padding: 0;
+        .lista-alumnos h2 {
+            margin-top: 0;
         }
 
-        .lista-alumnos li {
-            margin-bottom: 10px;
-        }
-
-        .lista-alumnos a {
-            color: #2575fc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .lista-alumnos a:hover {
-            text-decoration: underline;
-        }
-
-        .grid-item {
-            background-color: #f1f1f1;
-            padding: 20px;
-            text-align: center;
+        .lista-alumnos input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
             border: 1px solid #ccc;
-            border-radius: 8px;
-            transition: transform 0.3s, background-color 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
+            border-radius: 5px;
         }
 
-        .grid-item:hover {
-            transform: scale(1.05);
-            background-color: #e0e0e0;
+        .lista-alumnos table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .lista-alumnos th, .lista-alumnos td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .lista-alumnos th {
+            background-color: #f1f1f1;
+            color: #333;
+            font-weight: bold;
+            position: sticky; /* Keep the header fixed during scroll */
+            top: 0;
+            z-index: 2;
+        }
+
+        .lista-alumnos tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .lista-alumnos tr:hover {
+            background-color: #f1f1f1;
         }
 
         .details {
@@ -155,48 +131,6 @@
 
         .details h2 {
             margin-top: 0;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .asuntotuto {
-            font-size: 20px;
-            flex-direction: column;
-        }
-
-        .fechatuto {
-            font-size: 15px;
-            color: #555;
-            text-align: right;
-        }
-
-        .RegistraOtra {
-            margin-top: 10px;
-            grid-column: span 2;
-            text-align: center;
-        }
-
-        .btn-historial {
-            width: 70%;
-            margin-top: 20px;
-            padding: 12px;
-            background-color: #6a11cb;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 10px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-historial:hover {
-            background-color: #2575fc;
         }
 
         .btn-reporte {
@@ -215,20 +149,43 @@
         .btn-reporte:hover {
             background-color: #e68900;
         }
+
+        .message-summary {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sender {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .message-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .subject {
+            flex: 2;
+        }
+
+        .date {
+            flex: 1;
+            text-align: right;
+        }
     </style>
 
     <%
-        // Evita que la página se almacene en caché
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 
-        // Redirige al usuario a la página de inicio de sesión si la sesión no está activa
         if ((session.getAttribute("nameTutor") == null && session.getAttribute("idTutores") == null)) {
             response.sendRedirect("index.jsp");
         }
     %>
-
 </head>
 <body>
 <div class="navbar">
@@ -241,7 +198,14 @@
     <div class="grid-container">
         <div class="lista-alumnos">
             <h2>Lista de Alumnos</h2>
-            <ul>
+            <input type="text" id="buscarAlumno" onkeyup="filtrarAlumnos()" placeholder="Buscar por nombre o matricula...">
+            <table id="tablaAlumnos">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                </tr>
+                </thead>
+                <tbody>
                 <%
                     Integer idTutorLogin = (Integer) session.getAttribute("idTutorLogin");
                     if (idTutorLogin != null) {
@@ -249,25 +213,34 @@
                         List<Alumnos> alumnos = alumnosDAO.selectAlumnosVariosPorTutor(idTutorLogin);
                         for (Alumnos alumno : alumnos) {
                 %>
-                <li><a href="javascript:void(0);"
-                       onclick="mostrarDetalles('<%= alumno.getMatricula() %>')"><%= alumno.getNombre() %> <%= alumno.getSegundoNombre() %> <%= alumno.getApPaterno() %> <%= alumno.getApMaterno() %>
-                </a></li>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" onclick="mostrarDetalles('<%= alumno.getMatricula() %>')">
+                            <div class="message-summary">
+                                <span class="sender"><%= alumno.getNombre() %> <%= alumno.getSegundoNombre() %> <%= alumno.getApPaterno() %> <%= alumno.getApMaterno() %></span>
+                                <div class="message-details">
+                                    <span class="subject">Matricula: <%= alumno.getMatricula() %></span>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
                 <%
                         }
                     } else {
                         out.println("No se encontró el id del tutor en la sesión.");
                     }
                 %>
-            </ul>
+                </tbody>
+            </table>
         </div>
         <div class="details">
             <div id="detailsImage">
                 <img src="Images/UvLogo.png" alt="Selecciona una persona" width="100%" height="100%">
             </div>
             <div id="detailsText" style="display: none;">
-                <div class="navbardetalle">
-                    <a href="#" onclick="showSection('datos-personales')">Datos personales</a>
-                </div>
+                <h1>Datos personales</h1>
+
                 <div id="datos-personales" class="section">
                     <p><strong>Nombre:</strong> <span id="Nombre"></span></p>
                     <p><strong>Matricula:</strong> <span id="Matricula"></span></p>
@@ -284,43 +257,52 @@
                     </form>
                 </div>
             </div>
-            <script>
-                function mostrarDetalles(matricula) {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "AlumnoDetallesServlet?matricula=" + matricula, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            var alumno = JSON.parse(xhr.responseText);
-                            document.getElementById("Nombre").innerText = alumno.nombre + " " + alumno.segundoNombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
-                            document.getElementById("Matricula").innerText = alumno.matricula;
-                            document.getElementById("hiddenMatricula").value = alumno.matricula;
-                            document.getElementById("Correo").innerText = alumno.correo;
-                            document.getElementById("Telefono").innerText = alumno.numero;
-                            document.getElementById("Direccion").innerText = alumno.direccion;
-                            document.getElementById("FechaNac").innerText = alumno.fechaNac;
-                            document.getElementById("Carrera").innerText = alumno.carrera;
-                            document.getElementById("Semestre").innerText = alumno.semestre;
-                            document.getElementById("Tutor").innerText = alumno.fkTutor;
-
-                            document.getElementById("detailsImage").style.display = "none";
-                            document.getElementById("detailsText").style.display = "block";
-                        }
-                    };
-                    xhr.send();
-                }
-
-                function showSection(sectionId) {
-                    var sections = document.getElementsByClassName("section");
-                    for (var i = 0; i < sections.length; i++) {
-                        sections[i].style.display = "none";
-                    }
-                    document.getElementById(sectionId).style.display = "block";
-                }
-
-                showSection('datos-personales');
-            </script>
         </div>
     </div>
 </div>
+<script>
+    function mostrarDetalles(matricula) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "AlumnoDetallesServlet?matricula=" + matricula, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var alumno = JSON.parse(xhr.responseText);
+                document.getElementById("Nombre").innerText = alumno.nombre + " " + alumno.segundoNombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
+                document.getElementById("Matricula").innerText = alumno.matricula;
+                document.getElementById("hiddenMatricula").value = alumno.matricula;
+                document.getElementById("Correo").innerText = alumno.correo;
+                document.getElementById("Telefono").innerText = alumno.numero;
+                document.getElementById("Direccion").innerText = alumno.direccion;
+                document.getElementById("FechaNac").innerText = alumno.fechaNac;
+                document.getElementById("Carrera").innerText = alumno.carrera;
+                document.getElementById("Semestre").innerText = alumno.semestre;
+                document.getElementById("Tutor").innerText = alumno.fkTutor;
+
+                document.getElementById("detailsImage").style.display = "none";
+                document.getElementById("detailsText").style.display = "block";
+            }
+        };
+        xhr.send();
+    }
+
+    function filtrarAlumnos() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("buscarAlumno");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("tablaAlumnos");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

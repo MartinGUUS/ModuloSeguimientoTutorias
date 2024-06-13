@@ -22,17 +22,20 @@ public class Tutores implements Serializable {
 
     public Tutores(int idtutores, String nombre, String segundoNombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String contra, int fkEstatus) {
         this.idTutores = idtutores;
-        this.nombre = nombre;
-        this.segundoNombre = segundoNombre;
-        this.apPaterno = apPaterno;
-        this.apMaterno = apMaterno;
+        this.nombre = nombre != null ? nombre : "";
+        this.segundoNombre = segundoNombre != null ? segundoNombre : "";
+        this.apPaterno = apPaterno != null ? apPaterno : "";
+        this.apMaterno = apMaterno != null ? apMaterno : "";
         this.fechaNac = fechaNac;
-        this.numero = numero;
-        this.correo = correo;
-        this.direccion = direccion;
-        this.contra = contra;
+        this.numero = numero != null ? numero : "";
+        this.correo = correo != null ? correo : "";
+        this.direccion = direccion != null ? direccion : "";
+        this.contra = contra != null ? contra : "";
         this.fkEstatus = fkEstatus;
     }
+
+
+
 
     public Tutores(String nombre, String segundoNombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String contra, int fkEstatus) {
         this.nombre = nombre;

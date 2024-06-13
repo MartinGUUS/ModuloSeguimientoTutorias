@@ -53,32 +53,6 @@
             color: white;
         }
 
-        .navbar .menu .icon {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .navbardetalle {
-            overflow: hidden;
-            background-color: #333;
-            margin-bottom: 5px;
-        }
-
-        .navbardetalle a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbardetalle a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
         .content {
             flex: 1;
             display: flex;
@@ -100,32 +74,52 @@
             gap: 20px;
         }
 
-        .grid-container .lista-alumnos, .detalle-alumnos {
-            flex: 1;
-            padding: 10px;
-        }
-
         .lista-alumnos {
             border-right: 1px solid #ccc;
+            max-height: 500px; /* Fixed height for scrolling */
+            overflow-y: auto;
         }
 
-        .lista-alumnos ul {
-            list-style: none;
-            padding: 0;
+        .lista-alumnos h2 {
+            margin-top: 0;
         }
 
-        .lista-alumnos li {
-            margin-bottom: 10px;
+        .lista-alumnos input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
-        .lista-alumnos a {
-            color: #2575fc;
-            text-decoration: none;
+        .lista-alumnos table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .lista-alumnos th, .lista-alumnos td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .lista-alumnos th {
+            background-color: #f1f1f1;
+            color: #333;
             font-weight: bold;
+            position: sticky; /* Keep the header fixed during scroll */
+            top: 0;
+            z-index: 2;
         }
 
-        .lista-alumnos a:hover {
-            text-decoration: underline;
+        .lista-alumnos tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .lista-alumnos tr:hover {
+            background-color: #f1f1f1;
         }
 
         .details {
@@ -139,26 +133,47 @@
             margin-top: 0;
         }
 
-        table {
-            width: 100%;
-            margin-top: 10px;
+        .btn-reporte {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #ff9800;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            text-align: center;
         }
 
-        .asuntotuto {
-            font-size: 20px;
+        .btn-reporte:hover {
+            background-color: #e68900;
+        }
+
+        .message-summary {
+            display: flex;
             flex-direction: column;
         }
 
-        .fechatuto {
-            font-size: 15px;
-            color: #555;
-            text-align: right;
+        .sender {
+            font-size: 16px;
+            font-weight: bold;
         }
 
-        .RegistraOtra {
-            margin-top: 10px;
-            grid-column: span 2;
-            text-align: center;
+        .message-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .subject {
+            flex: 2;
+        }
+
+        .date {
+            flex: 1;
+            text-align: right;
         }
 
         .alert {
@@ -185,7 +200,6 @@
         }
     %>
 
-
 </head>
 <body>
 <div class="navbar">
@@ -198,7 +212,14 @@
     <div class="grid-container">
         <div class="lista-alumnos">
             <h2>Lista de Alumnos</h2>
-            <ul>
+            <input type="text" id="buscarAlumno" onkeyup="filtrarAlumnos()" placeholder="Buscar por nombre o matricula...">
+            <table id="tablaAlumnos">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                </tr>
+                </thead>
+                <tbody>
                 <%
                     Integer idTutorLogin = (Integer) session.getAttribute("idTutorLogin");
                     if (idTutorLogin != null) {
@@ -206,16 +227,26 @@
                         List<Alumnos> alumnos = alumnosDAO.selectAlumnosVariosPorTutor(idTutorLogin);
                         for (Alumnos alumno : alumnos) {
                 %>
-                <li><a href="javascript:void(0);"
-                       onclick="mostrarDetalles('<%= alumno.getMatricula() %>')"><%= alumno.getNombre() %> <%= alumno.getSegundoNombre() %> <%= alumno.getApPaterno() %> <%= alumno.getApMaterno() %>
-                </a></li>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" onclick="mostrarDetalles('<%= alumno.getMatricula() %>')">
+                            <div class="message-summary">
+                                <span class="sender"><%= alumno.getNombre() %> <%= alumno.getSegundoNombre() %> <%= alumno.getApPaterno() %> <%= alumno.getApMaterno() %></span>
+                                <div class="message-details">
+                                    <span class="subject">Matricula: <%= alumno.getMatricula() %></span>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
                 <%
                         }
                     } else {
                         out.println("No se encontró el id del tutor en la sesión.");
                     }
                 %>
-            </ul>
+                </tbody>
+            </table>
         </div>
         <div class="details">
             <div id="detailsImage">
@@ -223,7 +254,7 @@
             </div>
             <div id="detailsText" style="display: none;">
                 <div class="navbardetalle">
-                    <a href="#" onclick="showSection('datos-tutorias')">Tutorías</a>
+                    <h1>Tutorias</h1>
                 </div>
                 <div id="datos-tutorias" class="section">
                     <a id="nuevaTutoriaBtn" href="#">Registrar nueva tutoría</a>
@@ -257,12 +288,23 @@
         xhr.send();
     }
 
-    function showSection(sectionId) {
-        var sections = document.getElementsByClassName("section");
-        for (var i = 0; i < sections.length; i++) {
-            sections[i].style.display = "none";
+    function filtrarAlumnos() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("buscarAlumno");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("tablaAlumnos");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
         }
-        document.getElementById(sectionId).style.display = "block";
     }
 
     showSection('datos-tutorias');

@@ -247,6 +247,7 @@
             <button onclick="window.location.href = 'redactarMensajeTutores.jsp'">Nuevo Mensaje</button>
         </div>
         <div class="msj-list">
+
             <table border=".5">
                 <%
                     Object idTutorLoginObj = request.getSession().getAttribute("idTutorLogin");
@@ -270,7 +271,7 @@
                             <div class="message-summary">
                                 <span class="sender"><%= nombreCompleto %></span>
                                 <div class="message-details">
-                                    <span class="subject"><%=mensaje.getAsunto()%></span>
+                                    <span class="subject">Asunto: <%=mensaje.getAsunto()%></span>
                                     <span class="date"><%=mensaje.getFecha()%></span>
                                 </div>
                             </div>

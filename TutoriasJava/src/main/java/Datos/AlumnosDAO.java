@@ -21,7 +21,7 @@ public class AlumnosDAO {
     private static final String SQLSelectAlumnos = "SELECT * FROM alumnos ";
     private static final String SQLSelectUnAlumnos = "SELECT * FROM alumnos WHERE fkTutor = ? AND fkAlumno = ?";
     private static final String BuscarfkAlumno = "SELECT matricula FROM alumnos WHERE correo = ?";
-    private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
+   // private static final String BuscarCorreoAlumno = "SELECT correo FROM alumnos WHERE fkTutor = ?";
     private static final String HistorialAlumnos = "SELECT m.nombre, m.creditos, ma.calificacion, ma.inscripcion FROM  alumnos a JOIN materias_alumnos ma ON a.matricula = ma.fkAlumnos JOIN  materias m ON ma.fkMaterias = m.idMaterias JOIN areas ar ON m.fkArea = ar.idAreas WHERE a.matricula = ? AND ar.idAreas = ?";
     private static final String MateriasAprobadas = "SELECT COUNT(*) FROM materias_alumnos ma JOIN materias m ON ma.fkMaterias = m.idMaterias WHERE ma.calificacion > 6 AND fkArea = ? AND ma.fkalumnos=?";
     private static final String MateriasTotalesPorArea = "SELECT COUNT(*) FROM materias WHERE fkArea = ?";

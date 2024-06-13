@@ -22,23 +22,24 @@ public class Alumnos implements Serializable {
 
     public Alumnos() {
     }
-
     public Alumnos(String matricula, String nombre, String segundoNombre, String apPaterno, String apMaterno, Date fechaNac, String numero, String correo, String direccion, String contra, String carrera, int semestre, int fkTutor, int fkEstatus) {
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.segundoNombre = segundoNombre;
-        this.apPaterno = apPaterno;
-        this.apMaterno = apMaterno;
+        this.matricula = matricula != null ? matricula : "";
+        this.nombre = nombre != null ? nombre : "";
+        this.segundoNombre = segundoNombre != null ? segundoNombre : "";
+        this.apPaterno = apPaterno != null ? apPaterno : "";
+        this.apMaterno = apMaterno != null ? apMaterno : "";
         this.fechaNac = fechaNac;
-        this.numero = numero;
-        this.correo = correo;
-        this.direccion = direccion;
-        this.contra = contra;
-        this.carrera = carrera;
+        this.numero = numero != null ? numero : "";
+        this.correo = correo != null ? correo : "";
+        this.direccion = direccion != null ? direccion : "";
+        this.contra = contra != null ? contra : "";
+        this.carrera = carrera != null ? carrera : "";
         this.semestre = semestre;
         this.fkTutor = fkTutor;
         this.fkEstatus = fkEstatus;
     }
+
+
 
     // Getters y Setters (No estáticos)
 
