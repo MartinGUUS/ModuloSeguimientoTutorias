@@ -29,7 +29,7 @@
             <%
                 String nombreAl = (String) request.getSession().getAttribute("nombreAlumno");
                 String apellido = (String) request.getSession().getAttribute("apAlumno");
-
+                String matricula = (String) request.getSession().getAttribute("matriculaAlumno");
             %>
             <a href="informacionAlumno.jsp"><%= nombreAl + " " + apellido%>
             </a>
@@ -43,8 +43,8 @@
 </form>
 <div class="content">
     <div class="grid-container">
-        <a href="Info_alumno.jsp" class="grid-item">Avance academico</a>
-
+        <!-- Añadir la matrícula como parámetro en la URL -->
+        <a href="GeneratePDFServlet?matricula=<%= matricula %>" class="grid-item">Reporte avance academico</a>
     </div>
 </div>
 </body>

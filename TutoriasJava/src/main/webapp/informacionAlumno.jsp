@@ -90,7 +90,7 @@
 <%
     String matriculaAlumno = (String) session.getAttribute("matriculaAlumno");
     AlumnosDAO alumnosDAO = new AlumnosDAO();
-    Alumnos alumnos = alumnosDAO.selectTutorById(matriculaAlumno);
+    Alumnos alumnos = alumnosDAO.selectAlumnoById(matriculaAlumno);
 
 
 

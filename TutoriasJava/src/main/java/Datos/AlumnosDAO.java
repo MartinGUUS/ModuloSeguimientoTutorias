@@ -7,7 +7,9 @@ import Modelo.Materias_alumnos;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AlumnosDAO {
 
@@ -24,7 +26,61 @@ public class AlumnosDAO {
     private static final String MateriasAprobadas = "SELECT COUNT(*) FROM materias_alumnos ma JOIN materias m ON ma.fkMaterias = m.idMaterias WHERE ma.calificacion > 6 AND fkArea = ? AND ma.fkalumnos=?";
     private static final String MateriasTotalesPorArea = "SELECT COUNT(*) FROM materias WHERE fkArea = ?";
 
-    public Alumnos selectTutorById(String matriculaa) {
+
+    public Map<String, Integer> getCreditosTotalesPorArea() {
+        Map<String, Integer> creditosTotalesPorArea = new HashMap<>();
+        String sql = "SELECT a.nombre, SUM(m.creditos) as totalCreditos FROM materias m JOIN areas a ON m.fkArea = a.idAreas GROUP BY a.nombre";
+
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                String area = rs.getString("nombre");
+                int totalCreditos = rs.getInt("totalCreditos");
+                creditosTotalesPorArea.put(area, totalCreditos);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return creditosTotalesPorArea;
+    }
+
+
+
+    public List<Materias> getMateriasPorAlumno(String matricula) {
+        List<Materias> materias = new ArrayList<>();
+        String sql = "SELECT a.idAreas, m.nombre, m.creditos, a.nombre AS area, ma.inscripcion, ma.calificacion " +
+                "FROM materias_alumnos ma " +
+                "JOIN materias m ON ma.fkMaterias = m.idMaterias " +
+                "JOIN areas a ON m.fkArea = a.idAreas " +
+                "WHERE ma.fkAlumnos = ? " +
+                "ORDER BY a.nombre";
+
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, matricula);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Materias materia = new Materias(
+                        rs.getString("nombre"),
+                        rs.getInt("creditos"),
+                        rs.getInt("idAreas"),
+                        rs.getString("area"),
+                        rs.getInt("inscripcion"),
+                        rs.getInt("calificacion")
+                );
+                materias.add(materia);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return materias;
+    }
+
+
+    public Alumnos selectAlumnoById(String matriculaa) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

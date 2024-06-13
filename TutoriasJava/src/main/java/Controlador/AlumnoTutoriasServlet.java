@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.List;
 import com.google.gson.Gson;
 
-@WebServlet("/AlumnoTutoriasServlet")
 public class AlumnoTutoriasServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricula = request.getParameter("matricula");

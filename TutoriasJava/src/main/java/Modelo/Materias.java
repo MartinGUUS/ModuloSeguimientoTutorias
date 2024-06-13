@@ -8,28 +8,38 @@ public class Materias implements Serializable {
     private String nombre;
     private int creditos;
     private int fkArea;
+    private String area; // Añadir campo para el área
+    private int inscripcion; // Añadir campo para la inscripción
+    private int calificacion; // Añadir campo para la calificación
 
     public Materias() {
     }
 
-    public Materias(int idMaterias, String nombre, int creditos, int fkArea) {
+    public Materias(int idMaterias, String nombre, int creditos, int fkArea, String area, int inscripcion, int calificacion) {
         this.idMaterias = idMaterias;
         this.nombre = nombre;
         this.creditos = creditos;
         this.fkArea = fkArea;
+        this.area = area;
+        this.inscripcion = inscripcion;
+        this.calificacion = calificacion;
     }
 
-    public Materias(String nombre, int creditos, int fkArea) {
+    public Materias(String nombre, int creditos, int fkArea, String area, int inscripcion, int calificacion) {
         this.nombre = nombre;
         this.creditos = creditos;
         this.fkArea = fkArea;
+        this.area = area;
+        this.inscripcion = inscripcion;
+        this.calificacion = calificacion;
     }
-    
+
     public Materias(String nombre, int creditos) {
         this.nombre = nombre;
         this.creditos = creditos;
     }
-    
+
+    // Getters y setters
     public int getIdMaterias() {
         return idMaterias;
     }
@@ -60,5 +70,29 @@ public class Materias implements Serializable {
 
     public void setFkArea(int fkArea) {
         this.fkArea = fkArea;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public int getInscripcion() {
+        return inscripcion;
+    }
+
+    public void setInscripcion(int inscripcion) {
+        this.inscripcion = inscripcion;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
     }
 }

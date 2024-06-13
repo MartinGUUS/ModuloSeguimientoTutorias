@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 
-@WebServlet(name = "svLogin", urlPatterns = "/svLogin")
 public class svLogin extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

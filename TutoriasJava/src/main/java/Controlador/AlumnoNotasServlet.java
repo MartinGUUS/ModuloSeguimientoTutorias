@@ -13,7 +13,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-@WebServlet("/AlumnoNotasServlet")
 public class AlumnoNotasServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricula = request.getParameter("matricula");

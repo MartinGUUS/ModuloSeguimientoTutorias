@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import Datos.TutoriasDAO;
 import Modelo.Tutorias;
 
-@WebServlet("/RegistrarTutoriaServlet")
 public class RegistrarTutoriaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

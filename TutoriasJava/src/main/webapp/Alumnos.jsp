@@ -178,6 +178,7 @@
             grid-column: span 2;
             text-align: center;
         }
+
         .btn-historial {
             width: 70%;
             margin-top: 20px;
@@ -193,11 +194,28 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         .btn-historial:hover {
             background-color: #2575fc;
         }
-    </style>
 
+        .btn-reporte {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #ff9800;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-reporte:hover {
+            background-color: #e68900;
+        }
+    </style>
 
     <%
         // Evita que la página se almacene en caché
@@ -249,7 +267,6 @@
             <div id="detailsText" style="display: none;">
                 <div class="navbardetalle">
                     <a href="#" onclick="showSection('datos-personales')">Datos personales</a>
-                    <a href="#" onclick="showSection('historial')">Historial Académico</a>
                 </div>
                 <div id="datos-personales" class="section">
                     <p><strong>Nombre:</strong> <span id="Nombre"></span></p>
@@ -261,10 +278,9 @@
                     <p><strong>Carrera:</strong> <span id="Carrera"></span></p>
                     <p><strong>Semestre:</strong> <span id="Semestre"></span></p>
                     <p><strong>Tutor:</strong> <span id="Tutor"></span></p>
-                </div>
-                <div id="historial" class="section">
-                    <form action="HistorialServlet">
-                        <button type="submit" name="accion" value="ExportarPDF" class="btn-historial">Descargar reporte PDF</i>
+                    <form action="GeneratePDFServlet" method="get">
+                        <input type="hidden" name="matricula" id="hiddenMatricula">
+                        <button type="submit" class="btn-reporte">Descargar reporte de estudiante</button>
                     </form>
                 </div>
             </div>
@@ -277,6 +293,7 @@
                             var alumno = JSON.parse(xhr.responseText);
                             document.getElementById("Nombre").innerText = alumno.nombre + " " + alumno.segundoNombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
                             document.getElementById("Matricula").innerText = alumno.matricula;
+                            document.getElementById("hiddenMatricula").value = alumno.matricula;
                             document.getElementById("Correo").innerText = alumno.correo;
                             document.getElementById("Telefono").innerText = alumno.numero;
                             document.getElementById("Direccion").innerText = alumno.direccion;
