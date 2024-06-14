@@ -133,7 +133,9 @@
             toggleActions();
             setDateLimits();
             <%
+
                 String registroError = (String) session.getAttribute("registroError");
+                out.println(registroError);
                 Map<String, String[]> datosFormulario = (Map<String, String[]>) session.getAttribute("datosFormulario");
                 if (registroError != null) {
             %>
