@@ -7,39 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información del Tutor</title>
-    <link rel="stylesheet" href="menuTutor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 80px); /* Ajusta la altura restando la altura del navbar */
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: #333;
+        body {
             font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
-        .info-container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            text-align: left;
-        }
-        .info-container h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-        .info-container p {
-            margin: 10px 0;
-            font-size: 18px;
-            color: #555;
-        }
-        .info-container p strong {
-            color: #333;
-        }
+
         .navbar {
             background-color: white;
             color: #333;
@@ -50,14 +29,17 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
             border-radius: 0 0 10px 10px;
         }
+
         .navbar .logo {
             font-size: 24px;
             font-weight: bold;
         }
+
         .navbar .menu {
             display: flex;
             gap: 20px;
         }
+
         .navbar .menu a {
             color: #333;
             text-decoration: none;
@@ -65,9 +47,44 @@
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
         }
+
         .navbar .menu a:hover {
             background-color: #2575fc;
             color: white;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .info-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .info-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .info-container p {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .info-container p strong {
+            color: #333;
         }
     </style>
 
